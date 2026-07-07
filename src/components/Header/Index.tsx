@@ -5,6 +5,8 @@ import Banner from './Banner';
 
 import Drake from '@/assets/img/drake.png';
 
+import HeaderUser from '#/integrations/clerk/header-user';
+
 export default function Component() {
     return (
         <div className="bg-dark">
@@ -27,8 +29,7 @@ export default function Component() {
                     </div>
 
                     <div className="flex-1 flex justify-end">
-                        {/* <Actions /> */}
-                        CTA GOES HERE
+                        <HeaderUser />
                     </div>
                 </div>
             </header>
