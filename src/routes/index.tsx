@@ -6,10 +6,8 @@ import Player from '#/components/Player';
 
 function Home() {
     return (
-        <div>
-            <section>
-                <Player src="https://d3j2vjabzyd1kj.cloudfront.net/videos/qzaqNSCB7R7q.mp4" />
-            </section>
-        </div>
+        <section>
+            <Player src="https://d3j2vjabzyd1kj.cloudfront.net/videos/ttc.mp4" />
+        </section>
     );
 }

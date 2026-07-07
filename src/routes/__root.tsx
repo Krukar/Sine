@@ -2,12 +2,14 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 
-import ClerkProvider from '../integrations/clerk/provider';
+import { ClerkProvider } from '@clerk/tanstack-react-start';
 
 import appCss from '@/assets/styles/index.css?url';
 
 import Footer from '@/components/Footer';
 import Header from '@/components/Header/Index';
+
+import { env } from '#/env';
 
 export const Route = createRootRoute({
     head: () => ({
@@ -45,12 +47,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             </head>
 
             <body className="custom-scrollbar">
-                <ClerkProvider>
-                    <Header />
+                <ClerkProvider publishableKey={env.VITE_CLERK_PUBLISHABLE_KEY} afterSignOutUrl="/">
+                    <div className="wrapper">
+                        <Header />
 
-                    <main>{children}</main>
+                        <main className="main">{children}</main>
 
-                    <Footer />
+                        <Footer />
+                    </div>
 
                     <TanStackDevtools
                         config={{

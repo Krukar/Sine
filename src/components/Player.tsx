@@ -14,7 +14,7 @@ export default function Component({ src }: VideoSkeleton) {
     return (
         <Player.Provider>
             <MinimalVideoSkin>
-                <Video src={src} playsInline />
+                <Video autoPlay loop muted playsInline src={src} />
             </MinimalVideoSkin>
         </Player.Provider>
     );

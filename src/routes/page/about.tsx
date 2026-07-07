@@ -9,7 +9,9 @@ function RouteComponent() {
         <section>
             <h1>About</h1>
 
-            <p>Vine but for Toronto.</p>
+            <div className="text-center">
+                <p>Vine but for Toronto.</p>
+            </div>
         </section>
     );
 }
