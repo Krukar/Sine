@@ -5,7 +5,7 @@ import Banner from './Banner';
 
 import Drake from '@/assets/img/drake.png';
 
-import HeaderUser from '#/integrations/clerk/header-user';
+// import HeaderUser from '#/integrations/clerk/header-user';
 
 export default function Component() {
     return (
@@ -28,9 +28,7 @@ export default function Component() {
                         </div>
                     </div>
 
-                    <div className="flex-1 flex justify-end">
-                        <HeaderUser />
-                    </div>
+                    <div className="flex-1 flex justify-end"></div>
                 </div>
             </header>
 

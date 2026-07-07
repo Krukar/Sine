@@ -9,21 +9,6 @@
         @apply text-light;
     }
 
-    .app {
-        @apply min-h-screen;
-
-        @apply flex;
-        @apply flex-col;
-    }
-
-    main {
-        @apply flex-1;
-
-        @apply flex;
-        @apply justify-center;
-        @apply items-center;
-    }
-
     footer,
     header,
     section {

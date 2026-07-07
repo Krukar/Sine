@@ -10,7 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PageAboutRouteImport } from './routes/page/About'
+import { Route as PageAboutRouteImport } from './routes/page/about'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -18,30 +18,30 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const PageAboutRoute = PageAboutRouteImport.update({
-  id: '/page/About',
-  path: '/page/About',
+  id: '/page/about',
+  path: '/page/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/page/About': typeof PageAboutRoute
+  '/page/about': typeof PageAboutRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/page/About': typeof PageAboutRoute
+  '/page/about': typeof PageAboutRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/page/About': typeof PageAboutRoute
+  '/page/about': typeof PageAboutRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/page/About'
+  fullPaths: '/' | '/page/about'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/page/About'
-  id: '__root__' | '/' | '/page/About'
+  to: '/' | '/page/about'
+  id: '__root__' | '/' | '/page/about'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -58,10 +58,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/page/About': {
-      id: '/page/About'
-      path: '/page/About'
-      fullPath: '/page/About'
+    '/page/about': {
+      id: '/page/about'
+      path: '/page/about'
+      fullPath: '/page/about'
       preLoaderRoute: typeof PageAboutRouteImport
       parentRoute: typeof rootRouteImport
     }

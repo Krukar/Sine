@@ -25,7 +25,11 @@ export default function Component() {
                     </div>
 
                     <div className="flex space-x-5">
-                        <div>Fuck AI</div>
+                        <div>
+                            <a className="link--opacity" href="https://www.thirstymachines.com/" target="_blank">
+                                AI Sucks
+                            </a>
+                        </div>
 
                         <div className="text-neutral">|</div>
 
