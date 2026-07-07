@@ -1,0 +1,67 @@
+@layer base {
+    body {
+        @apply bg-light;
+        @apply text-dark;
+    }
+
+    ::selection {
+        @apply bg-primary;
+        @apply text-light;
+    }
+
+    .app {
+        @apply min-h-screen;
+
+        @apply flex;
+        @apply flex-col;
+    }
+
+    main {
+        @apply flex-1;
+
+        @apply flex;
+        @apply justify-center;
+        @apply items-center;
+    }
+
+    footer,
+    header,
+    section {
+        @apply gutter;
+    }
+
+    section {
+        @apply container;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply heading;
+    }
+
+    h1 {
+        @apply title;
+    }
+
+    a,
+    input,
+    button {
+        @apply in-out-smooth;
+    }
+
+    img {
+        @apply w-full;
+    }
+
+    input {
+        @apply outline-0;
+
+        @apply accent-primary;
+
+        @apply cursor-pointer;
+    }
+}

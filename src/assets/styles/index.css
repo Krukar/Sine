@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+@import './custom/base.css';
+@import './custom/components.css';
+@import './custom/form.css';
+@import './custom/utilities.css';
+
+@font-face {
+    font-family: 'League Spartan Variable';
+    src: url('/src/assets/fonts/Spartan.woff2') format('woff2-variations');
+    font-weight: 200 900;
+}
+
+@theme {
+    --color-dark: #0a0203; /* Raptors Black */
+    --color-light: #ebe9e9; /* Default White */
+    --color-error: #ae132a; /* Raptors Red */
+    --color-neutral: #8a8d8f; /* Raptors Neutral */
+    --color-primary: #753bbd; /* Raptors Purple */
+    --ease-cool: cubic-bezier(0, 0, 0.5, 1);
+    --font-heading: 'League Spartan Variable', sans-serif;
+    --spacing-0: 0px;
+    --spacing-1: 1px;
+    --spacing-2: 2px;
+    --spacing-3: 3px;
+    --spacing-4: 5px;
+    --spacing-5: 8px;
+    --spacing-6: 13px;
+    --spacing-7: 21px;
+    --spacing-8: 34px;
+    --spacing-9: 55px;
+    --spacing-10: 89px;
+    --spacing-11: 144px;
+    --spacing-12: 233px;
+    --spacing-13: 377px;
+    --spacing-lue: 42px;
+}

@@ -12,6 +12,8 @@ dist-ssr
 __unconfig*
 todos.json
 
-
 # Krukar
 to_do.txt
+
+# Claude
+src/generated
