@@ -9,6 +9,7 @@ import { ClerkProvider } from '@clerk/tanstack-react-start';
 import appCss from '@/assets/styles/index.css?url';
 
 import Footer from '@/components/Footer';
+import Gate from '@/components/Gate/Index';
 import Header from '@/components/Header/Index';
 
 import { env } from '#/env';
@@ -57,6 +58,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
                         <Footer />
                     </div>
+
+                    <Gate />
 
                     <Analytics />
 
