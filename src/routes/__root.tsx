@@ -2,6 +2,8 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 
+import { Analytics } from '@vercel/analytics/react';
+
 import { ClerkProvider } from '@clerk/tanstack-react-start';
 
 import appCss from '@/assets/styles/index.css?url';
@@ -55,6 +57,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
                         <Footer />
                     </div>
+
+                    <Analytics />
 
                     <TanStackDevtools
                         config={{
