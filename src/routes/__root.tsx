@@ -61,7 +61,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
                     <Gate />
 
-                    <Analytics />
+                    <Analytics debug={false} />
 
                     <TanStackDevtools
                         config={{
