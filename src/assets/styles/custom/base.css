@@ -63,7 +63,5 @@
         @apply outline-0;
 
         @apply accent-primary;
-
-        @apply cursor-pointer;
     }
 }

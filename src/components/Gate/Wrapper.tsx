@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
-import Building from '@/assets/img/building.jpg';
+import { verify_gate_code } from '@/lib/gate';
 
 import Form from './Form';
+
+import Building from '@/assets/img/building.jpg';
 
 export default function Component({ handle_hide }: { handle_hide: Function }) {
     const [is_loading, set_is_loading] = useState<boolean>(false);
@@ -28,7 +30,9 @@ export default function Component({ handle_hide }: { handle_hide: Function }) {
 
             const attempt = data.get('attempt') as string;
 
-            if (attempt.toLowerCase() === 'skydome') {
+            const { valid } = await verify_gate_code({ data: attempt });
+
+            if (valid) {
                 handle_hide();
 
                 return;

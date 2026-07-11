@@ -1,4 +1,10 @@
 @layer components {
+    .auth {
+        button {
+            @apply button--light;
+        }
+    }
+
     .custom-scrollbar::-webkit-scrollbar {
         @apply h-4;
         @apply w-4;

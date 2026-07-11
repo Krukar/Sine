@@ -3,8 +3,9 @@ import { z } from 'zod';
 
 export const env = createEnv({
     server: {
-        DATABASE_URL: z.string().url(),
+        DATABASE_URL: z.url(),
         CLERK_SECRET_KEY: z.string().min(1),
+        GATE_CODE: z.string().min(1),
     },
 
     clientPrefix: 'VITE_',
