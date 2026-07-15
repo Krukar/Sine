@@ -1,20 +1,33 @@
 @layer components {
     .form {
-        @apply space-y-7;
+        @apply space-y-8;
 
-        .label {
-            @apply flex;
-            @apply flex-col;
+        .fieldset {
+            @apply space-y-7;
 
-            .input {
-                @apply mt-4;
+            .label {
+                @apply flex;
+                @apply flex-col;
 
-                @apply border-b-2;
-                @apply border-neutral;
+                .input {
+                    @apply mt-4;
 
-                @apply focus:border-primary;
+                    @apply border-b-2;
+                    @apply border-neutral;
 
-                @apply valid:border-dark;
+                    @apply focus:border-primary;
+
+                    @apply valid:border-dark;
+                }
+            }
+
+            .radio {
+                @apply flex;
+                @apply items-center;
+
+                @apply space-x-5;
+
+                @apply capitalize;
             }
         }
     }

@@ -3,12 +3,6 @@ import { useState } from 'react';
 import Form from './Form';
 
 export default function Component() {
-    return (
-        <section>
-            <h1>Coming Soon</h1>
-        </section>
-    );
-
     const [is_loading, set_is_loading] = useState<boolean>(false);
 
     const [error, set_error] = useState<string | null>(null);
