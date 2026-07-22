@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import Form from './Form';
 
+import { preload, transcode } from '@/lib/transcode';
+
 export default function Component() {
     const [is_loading, set_is_loading] = useState<boolean>(false);
 
@@ -23,6 +25,14 @@ export default function Component() {
             set_is_loading(true);
 
             const data = new FormData(e.currentTarget);
+
+            const file = data.get('file');
+
+            if (!(file instanceof File) || file.size === 0) {
+                throw new Error('Please select a video.');
+            }
+
+            const blob = await transcode(file);
 
             // handle creation
         } catch (err) {

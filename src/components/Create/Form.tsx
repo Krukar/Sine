@@ -36,7 +36,6 @@ export default function Form({
                     What's the title of your video?
                     <input
                         aria-required="true"
-                        autoFocus
                         className="input"
                         id="title"
                         maxLength={256}

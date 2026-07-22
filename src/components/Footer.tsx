@@ -8,7 +8,7 @@ export default function Component() {
             <footer className="bg-primary text-light text-sm">
                 <div className="flex justify-between py-7">
                     <div>
-                        <ul className="flex space-x-8">
+                        <ul className="flex space-x-6">
                             {[
                                 {
                                     to: '/page/about',
@@ -21,18 +21,20 @@ export default function Component() {
                                     </Link>
                                 </li>
                             ))}
+
+                            <li>
+                                <div className="text-neutral">|</div>
+                            </li>
+
+                            <li>
+                                <a className="link--opacity" href="https://www.thirstymachines.com/" target="_blank">
+                                    AI Sucks
+                                </a>
+                            </li>
                         </ul>
                     </div>
 
                     <div className="flex space-x-5">
-                        <div>
-                            <a className="link--opacity" href="https://www.thirstymachines.com/" target="_blank">
-                                AI Sucks
-                            </a>
-                        </div>
-
-                        <div className="text-neutral">|</div>
-
                         <div>
                             <a className="link--opacity" href="mailto:contact@6ix.video">
                                 contact@6ix.video
