@@ -1,10 +1,31 @@
+import { useEffect, useState } from 'react';
+
+import Feed from './Feed';
+
+import { get_feed } from '@/lib/feed';
+
+import type { feed_item } from '@/lib/feed';
+
 export default function Component() {
+    const [items, set_items] = useState<null | feed_item[]>(null);
+
+    useEffect(() => {
+        const load = async () => {
+            try {
+                const feed = await get_feed();
+
+                set_items(feed);
+            } catch (err) {
+                console.log('err', err);
+            }
+        };
+
+        load();
+    }, []);
+
     return (
         <div className="py-4 bg-light">
-            {/* prettier-ignore */}
-            <div className="text-xs text-center">
-               <a className="link--primary" href="https://luma.com/t1ytmj9r?utm_content=link_in_bio&utm_medium=social&utm_source=sine" target="_blank">July 25 - Wiggermania World Premiere @ Super Wonder Gallery</a>
-            </div>
+            <Feed items={items} />
         </div>
     );
 }
