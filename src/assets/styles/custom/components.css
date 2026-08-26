@@ -98,4 +98,15 @@
             transform: scale(1.25) rotate(10deg);
         }
     }
+
+    .thumbs {
+        @apply w-9;
+
+        @apply cursor-pointer;
+
+        &:focus,
+        &:hover {
+            @apply text-primary;
+        }
+    }
 }

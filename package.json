@@ -41,6 +41,7 @@
         "@videojs/react": "^10.0.0-beta.25",
         "fast-xml-parser": "^5.11.0",
         "lucide-react": "^0.545.0",
+        "nanoid": "^6.0.1",
         "nitro": "npm:nitro-nightly@latest",
         "prisma": "^7.4.2",
         "react": "^19.2.0",
