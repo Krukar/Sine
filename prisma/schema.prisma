@@ -7,8 +7,52 @@ datasource db {
   provider = "postgresql"
 }
 
-// model Todo {
-//   id        Int      @id @default(autoincrement())
-//   title     String
-//   createdAt DateTime @default(now())
-// }
+model User {
+  id         String   @id @default(uuid())
+  clerk_id   String   @unique
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  likes Like[]
+
+  videos Video[]
+
+  @@map("users")
+}
+
+model Video {
+  id      String @id @default(uuid())
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  title       String
+  storage_key String @unique
+  width       Int
+  height      Int
+
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  deleted_at DateTime?
+
+  likes Like[]
+
+  @@index([user_id, created_at])
+
+  @@map("videos")
+}
+
+model Like {
+  id       String @id @default(uuid())
+  user_id  String
+  video_id String
+
+  user  User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  video Video @relation(fields: [video_id], references: [id], onDelete: Cascade)
+
+  created_at DateTime @default(now())
+
+  @@unique([user_id, video_id])
+  @@index([video_id])
+
+  @@map("likes")
+}

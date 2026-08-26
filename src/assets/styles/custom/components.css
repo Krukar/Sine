@@ -63,6 +63,28 @@
         @apply in-out-smooth;
     }
 
+    .feed-fade {
+        animation: feed-fade 5s cubic-bezier(0, 0, 0.5, 1) infinite;
+    }
+
+    @keyframes feed-fade {
+        0% {
+            opacity: 0;
+        }
+
+        25% {
+            opacity: 1;
+        }
+
+        75% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
     .header__icon {
         animation: header__icon 5s cubic-bezier(0, 0, 0.5, 1) infinite alternate;
     }

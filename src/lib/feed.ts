@@ -11,15 +11,20 @@ export type feed_item = { link: string; title: string };
 
 export const get_feed = createServerFn({ method: 'GET' }).handler(async (): Promise<feed_item[] | null> => {
     try {
-        const res = await fetch('https://rss.cbc.ca/lineup/canada-toronto.xml');
+        if (import.meta.env.DEV)
+            return [
+                { link: '', title: 'Dev mode feed 1' },
+                { link: '', title: 'Dev mode feed 2' },
+            ];
 
-        if (!res.ok) throw new Error(`CBC failed: ${res.status}`);
+        const res = await fetch('https://www.reddit.com/r/toronto.rss');
 
-        const xml = await res.text();
-        const parsed = parser.parse(xml);
+        const text = await res.text();
 
-        const items = parsed.rss.channel.item.map(({ link, title }: { link: string; title: string }) => ({
-            link,
+        const doc = parser.parse(text);
+
+        const items = doc.feed.entry.map(({ link, title }: { link: { ['@_href']: string }; title: string }) => ({
+            link: link['@_href'],
             title,
         }));
 

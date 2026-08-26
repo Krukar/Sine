@@ -26,7 +26,7 @@ export default function Component({ items }: { items: feed_item[] | null }) {
             {!items ? (
                 <div>Loading</div>
             ) : (
-                <a className="link--primary" href={items[i].link} target="_blank">
+                <a className="link--primary feed-fade" href={items[i].link} target="_blank">
                     {items[i].title}
                 </a>
             )}
