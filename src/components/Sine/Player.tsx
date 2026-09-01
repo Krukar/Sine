@@ -1,10 +1,8 @@
-'use client';
-
 import '@videojs/react/video/minimal-skin.css';
 import { createPlayer, videoFeatures } from '@videojs/react';
 import { MinimalVideoSkin, Video } from '@videojs/react/video';
 
-const Player = createPlayer({ features: videoFeatures });
+const { Player } = createPlayer({ features: videoFeatures });
 
 export type VideoSkeleton = {
     src: string;
@@ -12,10 +10,10 @@ export type VideoSkeleton = {
 
 export default function Component({ src }: VideoSkeleton) {
     return (
-        <Player.Provider>
+        <Player>
             <MinimalVideoSkin>
                 <Video autoPlay loop muted playsInline src={src} />
             </MinimalVideoSkin>
-        </Player.Provider>
+        </Player>
     );
 }

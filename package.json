@@ -38,7 +38,7 @@
         "@tanstack/react-start": "latest",
         "@tanstack/router-plugin": "^1.132.0",
         "@vercel/analytics": "^2.0.1",
-        "@videojs/react": "^10.0.0-beta.25",
+        "@videojs/react": "^10.0.0-beta.32",
         "fast-xml-parser": "^5.11.0",
         "lucide-react": "^0.545.0",
         "nanoid": "^6.0.1",

@@ -51,13 +51,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
             <body className="custom-scrollbar">
                 <ClerkProvider publishableKey={env.VITE_CLERK_PUBLISHABLE_KEY} afterSignOutUrl="/">
-                    <div className="wrapper">
-                        <Header />
+                    <Header />
 
-                        <main className="main">{children}</main>
+                    <main className="main">{children}</main>
 
-                        <Footer />
-                    </div>
+                    <Footer />
 
                     <Gate />
 

@@ -30,7 +30,7 @@ export default function Component({ handle_hide }: { handle_hide: Function }) {
 
             const attempt = data.get('attempt') as string;
 
-            const { valid } = await verify_gate_code({ data: attempt });
+            const { valid } = await verify_gate_code({ data: { attempt } });
 
             if (valid) {
                 handle_hide();

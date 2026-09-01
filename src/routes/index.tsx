@@ -6,8 +6,10 @@ import Sine from '@/components/Sine/Index';
 
 function Home() {
     return (
-        <section>
-            <Sine />
-        </section>
+        <div>
+            <section>
+                <Sine />
+            </section>
+        </div>
     );
 }

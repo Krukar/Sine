@@ -9,23 +9,6 @@
         @apply text-light;
     }
 
-    .wrapper {
-        @apply flex;
-
-        @apply flex-col;
-
-        @apply min-h-screen;
-    }
-
-    .main {
-        @apply flex-1;
-
-        @apply flex;
-        @apply flex-col;
-        @apply items-center;
-        @apply justify-center;
-    }
-
     footer,
     header,
     section {

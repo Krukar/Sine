@@ -100,13 +100,19 @@
     }
 
     .thumbs {
-        @apply w-9;
+        @apply w-lue;
 
         @apply cursor-pointer;
 
+        @apply fill-transparent;
+        @apply stroke-dark;
+
         &:focus,
         &:hover {
-            @apply text-primary;
+            @apply stroke-primary;
+            @apply fill-primary;
+
+            @apply scale-115;
         }
     }
 }
