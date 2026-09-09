@@ -12,7 +12,7 @@ import Footer from '@/components/Footer';
 import Gate from '@/components/Gate/Index';
 import Header from '@/components/Header/Index';
 
-import { env } from '#/env';
+import { env } from '@/env';
 
 export const Route = createRootRoute({
     head: () => ({

@@ -14,13 +14,13 @@ export default function Component() {
                 <div className="flex justify-between items-center py-6">
                     <div className="flex-1 flex translate-y-5">
                         <div className="header__icon">
-                            <img alt="Drake's head" className="h-lue w-lue" src={Drake} />
+                            <img alt="Drake's head" className="size-8 lg:size-lue" src={Drake} />
                         </div>
                     </div>
 
                     <div>
                         <div className="translate-y-5">
-                            <Link className="heading text-xl lg:text-4xl tracking-widest link--dark" to="/">
+                            <Link className="heading text-3xl lg:text-4xl tracking-widest link--dark" to="/">
                                 6INE
                             </Link>
                         </div>

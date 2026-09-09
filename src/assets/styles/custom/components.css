@@ -100,7 +100,8 @@
     }
 
     .thumbs {
-        @apply w-lue;
+        @apply size-8;
+        @apply lg:size-lue;
 
         @apply cursor-pointer;
 

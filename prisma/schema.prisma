@@ -8,10 +8,12 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(uuid())
+  id         String   @id @db.VarChar(12)
   clerk_id   String   @unique
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+
+  username String? @unique @db.VarChar(64)
+  avatar_url String
 
   reactions Reaction[]
 
@@ -21,21 +23,19 @@ model User {
 }
 
 model Video {
-  id      String @id @default(uuid())
-  user_id String
+  id      String @id @db.VarChar(6)
+  user_id String @db.VarChar(12)
   user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
-  title       String
-  storage_key String @unique
+  title       String @db.VarChar(280)
   width       Int
   height      Int
 
   created_at DateTime  @default(now())
-  updated_at DateTime  @updatedAt
+  updated_at DateTime  @default(now()) @updatedAt
   deleted_at DateTime?
 
   reactions Reaction[]
-  reactions_anon ReactionAnon[]
 
   @@index([user_id, created_at])
   @@index([created_at])
@@ -44,34 +44,20 @@ model Video {
 }
 
 model Reaction {
-  id       String @id @default(uuid())
-  user_id  String
-  video_id String
+  id String @id @default(uuid(7)) @db.Uuid
+  user_id  String? @db.VarChar(12)
+  video_id String  @db.VarChar(6)
 
   value Int
 
-  user  User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user  User?  @relation(fields: [user_id], references: [id], onDelete: Cascade)
   video Video @relation(fields: [video_id], references: [id], onDelete: Cascade)
 
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  updated_at DateTime @default(now()) @updatedAt
 
   @@unique([user_id, video_id])
   @@index([video_id])
 
   @@map("reactions")
-}
-
-model ReactionAnon {
-  id       String @id @default(uuid())
-  video_id String
-  video    Video  @relation(fields: [video_id], references: [id], onDelete: Cascade)
-
-  value Int
-
-  created_at DateTime @default(now())
-
-  @@index([video_id, value])
-
-  @@map("reactions_anon")
 }

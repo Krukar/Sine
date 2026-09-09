@@ -1,46 +1,52 @@
-'use client';
-
-import { useState } from 'react';
-
 import Player from './Player';
 
 import ThumbsDown from '@/components/SVGs/ThumbsDown';
 import ThumbsUp from '@/components/SVGs/ThumbsUp';
 
-import { get_random_video_id } from '@/lib/random';
+export type Sine = {
+    created_at: Date;
+    height: number;
+    id: string;
+    title: string;
+    user: {
+        img: string;
+        name: string;
+    };
+    width: number;
+};
 
-export default function Component({ initial_video_id }: { initial_video_id?: string }) {
-    const [video_id, set_video_id] = useState<string>(initial_video_id || 'NJcXbE');
-
+export default function Component({ created_at, height, id, title, user, width }: Sine) {
     const handle_click = async () => {
-        const next_video_id = await get_random_video_id({ data: { video_id: video_id } });
-
-        set_video_id(next_video_id);
+        // get a random video_id and then update the search nav
     };
 
     return (
         <div>
-            <div className="flex flex-wrap lg:flex-nowrap lg:items-center lg:space-x-8 mb-8">
-                <div className="w-full lg:w-auto lg:flex-1">
-                    <div className="aspect-video">
-                        <Player src={`https://d3j2vjabzyd1kj.cloudfront.net/videos/${video_id}.mp4`} />
-                    </div>
-                </div>
-
-                <div className="lg:order-first">
+            <div className="flex flex-nowrap items-center space-x-7 lg:space-x-8 mb-8 lg:mb-9">
+                <div>
                     <button className="thumbs" onClick={handle_click}>
                         <ThumbsDown />
                     </button>
                 </div>
 
-                <div className="">
+                <div className="aspect-video flex-1">
+                    <Player
+                        height={height}
+                        src={`https://d3j2vjabzyd1kj.cloudfront.net/videos/${id}.mp4`}
+                        width={width}
+                    />
+                </div>
+
+                <div>
                     <button className="thumbs" onClick={handle_click}>
                         <ThumbsUp />
                     </button>
                 </div>
             </div>
 
-            <div>user and info</div>
+            <div>
+                <div className="heading text-4xl lg:text-5xl">{title}</div>
+            </div>
         </div>
     );
 }

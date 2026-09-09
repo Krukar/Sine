@@ -9,13 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as CreateRouteImport } from './routes/create'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PageAboutRouteImport } from './routes/page/about'
 
-const CreateRoute = CreateRouteImport.update({
-  id: '/create',
-  path: '/create',
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,41 +31,41 @@ const PageAboutRoute = PageAboutRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/create': typeof CreateRoute
+  '/profile': typeof ProfileRoute
   '/page/about': typeof PageAboutRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/create': typeof CreateRoute
+  '/profile': typeof ProfileRoute
   '/page/about': typeof PageAboutRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/create': typeof CreateRoute
+  '/profile': typeof ProfileRoute
   '/page/about': typeof PageAboutRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/create' | '/page/about'
+  fullPaths: '/' | '/profile' | '/page/about'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/create' | '/page/about'
-  id: '__root__' | '/' | '/create' | '/page/about'
+  to: '/' | '/profile' | '/page/about'
+  id: '__root__' | '/' | '/profile' | '/page/about'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CreateRoute: typeof CreateRoute
+  ProfileRoute: typeof ProfileRoute
   PageAboutRoute: typeof PageAboutRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/create': {
-      id: '/create'
-      path: '/create'
-      fullPath: '/create'
-      preLoaderRoute: typeof CreateRouteImport
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,7 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CreateRoute: CreateRoute,
+  ProfileRoute: ProfileRoute,
   PageAboutRoute: PageAboutRoute,
 }
 export const routeTree = rootRouteImport
