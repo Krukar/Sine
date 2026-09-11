@@ -1,7 +1,19 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 import { SignOutButton } from '@clerk/tanstack-react-start';
 
-export const Route = createFileRoute('/profile')({ component: Profile });
+import { Auth } from '@/lib/auth';
+
+import { get_profile } from '@/lib/user';
+
+export const Route = createFileRoute('/profile')({
+    component: Profile,
+    beforeLoad: async () => {
+        const { isAuthenticated } = await Auth();
+
+        if (!isAuthenticated) throw redirect({ to: '/' });
+    },
+    loader: () => get_profile(),
+});
 
 function Profile() {
     return (

@@ -13,7 +13,7 @@ model User {
   created_at DateTime @default(now())
 
   username String? @unique @db.VarChar(64)
-  avatar_url String
+  avatar_url String?
 
   reactions Reaction[]
 
@@ -36,6 +36,7 @@ model Video {
   deleted_at DateTime?
 
   reactions Reaction[]
+  anon_reactions ReactionAnon[]
 
   @@index([user_id, created_at])
   @@index([created_at])
@@ -45,12 +46,12 @@ model Video {
 
 model Reaction {
   id String @id @default(uuid(7)) @db.Uuid
-  user_id  String? @db.VarChar(12)
+  user_id  String @db.VarChar(12)
   video_id String  @db.VarChar(6)
 
   value Int
 
-  user  User?  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
   video Video @relation(fields: [video_id], references: [id], onDelete: Cascade)
 
   created_at DateTime @default(now())
@@ -60,4 +61,17 @@ model Reaction {
   @@index([video_id])
 
   @@map("reactions")
+}
+
+model ReactionAnon {
+  id       String @id @default(uuid(7)) @db.Uuid
+  video_id String  @db.VarChar(6)
+  video    Video  @relation(fields: [video_id], references: [id], onDelete: Cascade)
+
+  value Int
+
+  created_at DateTime @default(now())
+
+  @@index([video_id, value])
+  @@map("anon_reactions")
 }

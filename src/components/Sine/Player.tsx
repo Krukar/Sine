@@ -1,22 +1,38 @@
-import { createPlayer, videoFeatures } from '@videojs/react';
-import { MinimalVideoSkin, Video } from '@videojs/react/video';
+import Video from './Video';
 
-import '@videojs/react/video/minimal-skin.css';
+import ThumbsDown from '@/components/SVGs/ThumbsDown';
+import ThumbsUp from '@/components/SVGs/ThumbsUp';
 
-const { Player } = createPlayer({ features: videoFeatures });
+import type { SineSkeleton } from './Index';
 
-export type VideoSkeleton = {
-    height: number;
-    src: string;
-    width: number;
-};
-
-export default function Component({ src }: VideoSkeleton) {
+export default function Component({
+    handle_click,
+    height,
+    id,
+    width,
+}: {
+    handle_click: Function;
+    height: SineSkeleton['height'];
+    id: SineSkeleton['id'];
+    width: SineSkeleton['width'];
+}) {
     return (
-        <Player>
-            <MinimalVideoSkin>
-                <Video autoPlay loop muted playsInline src={src} />
-            </MinimalVideoSkin>
-        </Player>
+        <div className="flex flex-nowrap items-center space-x-7 lg:space-x-8 mb-8 lg:mb-9">
+            <div>
+                <button className="thumbs" onClick={() => handle_click(-1)}>
+                    <ThumbsDown />
+                </button>
+            </div>
+
+            <div className="aspect-video flex-1">
+                <Video height={height} src={`https://d3j2vjabzyd1kj.cloudfront.net/videos/${id}.mp4`} width={width} />
+            </div>
+
+            <div>
+                <button className="thumbs" onClick={() => handle_click(1)}>
+                    <ThumbsUp />
+                </button>
+            </div>
+        </div>
     );
 }
