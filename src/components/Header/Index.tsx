@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 
-import Auth from './Auth';
+// import Auth from './Auth';
 import Banner from './Banner';
 
 import Drake from '@/assets/img/drake.png';
@@ -26,9 +26,7 @@ export default function Component() {
                         </div>
                     </div>
 
-                    <div className="flex-1 flex justify-end">
-                        <Auth />
-                    </div>
+                    <div className="flex-1 flex justify-end">{/* <Auth /> */}</div>
                 </div>
             </header>
 

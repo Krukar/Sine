@@ -1,11 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { get_sine_by_id } from '#/lib/sine';
+import { get_sine_by_id } from '@/lib/sine';
+
+import * as z from 'zod';
 
 export const Route = createFileRoute('/')({
     component: Home,
-    loader: {
-        handler: () => get_sine_by_id({ data: { id: 'NJcXbE' } }),
+    validateSearch: z.object({ id: z.string().length(6).optional() }),
+    loaderDeps: ({ search }) => ({ id: search.id }),
+    loader: async ({ deps }) => {
+        return get_sine_by_id({ data: { id: deps.id || 'NJcXbE' } });
     },
 });
 

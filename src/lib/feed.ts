@@ -5,6 +5,7 @@ import { XMLParser } from 'fast-xml-parser';
 const parser = new XMLParser({
     ignoreAttributes: false,
     attributeNamePrefix: '@_',
+    isArray: (name) => name === 'entry',
 });
 
 export type feed_item = { link: string; title: string };
@@ -30,7 +31,7 @@ export const get_feed = createServerFn({ method: 'GET' }).handler(async (): Prom
 
         return items;
     } catch (err) {
-        console.log('err', err);
+        if (import.meta.env.DEV) console.log(err);
 
         return null;
     }

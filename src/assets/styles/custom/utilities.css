@@ -87,19 +87,19 @@
     @apply link;
 
     @apply hover:text-dark;
-    @apply focus:text-dark;
+    @apply focus-visible:text-dark;
 }
 
 @utility link--opacity {
     @apply hover:opacity-80;
-    @apply focus:opacity-80;
+    @apply focus-visible:opacity-80;
 }
 
 @utility link--primary {
     @apply link;
 
     @apply hover:text-primary;
-    @apply focus:text-primary;
+    @apply focus-visible:text-primary;
 }
 
 /*========== 

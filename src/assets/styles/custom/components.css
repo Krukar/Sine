@@ -108,7 +108,7 @@
         @apply fill-transparent;
         @apply stroke-dark;
 
-        &:focus,
+        &:focus-visible,
         &:hover {
             @apply stroke-primary;
             @apply fill-primary;

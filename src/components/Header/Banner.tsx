@@ -16,7 +16,7 @@ export default function Component() {
 
                 set_items(feed);
             } catch (err) {
-                console.log('err', err);
+                if (import.meta.env.DEV) console.log(err);
             }
         };
 
