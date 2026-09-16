@@ -12,8 +12,7 @@ const SEED_USER = {
     id: 'm_BkAexUJyKQ',
     clerk_id: 'user_3GC8zaXvy32cPmdMBcCj0n7YNdO',
     username: 'Toronto Man',
-    avatar_url:
-        'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zR0M4emVONklyZjQ4WWMwbTEzS1VNVnYxdksifQ',
+    avatar_url: 'https://pbs.twimg.com/profile_images/2096412336261115905/8Pmix4t0_400x400.jpg',
 };
 
 const SEED_VIDEOS = [
@@ -21,6 +20,7 @@ const SEED_VIDEOS = [
     { id: '2mstWy', title: 'God Bless The Weston Family', width: 720, height: 1280 },
     { id: 'bxah5P', title: 'Underground Kings', width: 1080, height: 1920 },
     { id: 'NJcXbE', title: 'Running Through The 6ix', width: 720, height: 1280 },
+    { id: 'QfNkcS', title: 'Dating in Toronto', width: 762, height: 1116 },
 ];
 
 async function main() {

@@ -5,20 +5,22 @@ import Player from './Player';
 
 export type SineSkeleton = {
     created_at: Date;
-    height: number;
+    dimensions: {
+        height: number;
+        width: number;
+    };
     id: string;
     title: string;
     user: {
         img: string;
         name: string;
     };
-    width: number;
 };
 
 import { add_anon_reaction } from '@/lib/reaction';
 import { get_next_sine } from '@/lib/sine';
 
-export default function Component({ created_at, height, id, title, user, width }: SineSkeleton) {
+export default function Component({ created_at, dimensions, id, title, user }: SineSkeleton) {
     const navigate = useNavigate();
 
     const handle_click = async (value: -1 | 1) => {
@@ -42,8 +44,8 @@ export default function Component({ created_at, height, id, title, user, width }
     };
 
     return (
-        <div>
-            <Player handle_click={handle_click} height={height} id={id} width={width} />
+        <div className="sine">
+            <Player dimensions={dimensions} handle_click={handle_click} id={id} title={title} />
 
             <Details created_at={created_at} title={title} user={user} />
         </div>

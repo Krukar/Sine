@@ -31,14 +31,16 @@ export const get_sine_by_id = createServerFn({ method: 'POST' })
 
         return {
             created_at,
-            height,
+            dimensions: {
+                height,
+                width,
+            },
             id,
             title,
             user: {
                 img: user.avatar_url || '/logo512.png',
                 name: user.username || 'Drake #1 Fan',
             },
-            width,
         };
     });
 

@@ -6,15 +6,15 @@ import ThumbsUp from '@/components/SVGs/ThumbsUp';
 import type { SineSkeleton } from './Index';
 
 export default function Component({
+    dimensions,
     handle_click,
-    height,
     id,
-    width,
+    title,
 }: {
+    dimensions: SineSkeleton['dimensions'];
     handle_click: Function;
-    height: SineSkeleton['height'];
     id: SineSkeleton['id'];
-    width: SineSkeleton['width'];
+    title: SineSkeleton['title'];
 }) {
     return (
         <div className="flex flex-nowrap items-center space-x-7 lg:space-x-8 mb-8 lg:mb-9">
@@ -25,7 +25,7 @@ export default function Component({
             </div>
 
             <div className="aspect-video flex-1">
-                <Video height={height} src={`https://d3j2vjabzyd1kj.cloudfront.net/videos/${id}.mp4`} width={width} />
+                <Video dimensions={dimensions} id={id} title={title} />
             </div>
 
             <div>
