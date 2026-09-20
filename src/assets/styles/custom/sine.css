@@ -1,0 +1,168 @@
+@layer components {
+    .sine {
+        @apply relative;
+    }
+
+    .sine__container {
+        @apply aspect-video;
+    }
+
+    /*========== 
+        Controls
+    ==========*/
+    .sine-controls {
+        @apply absolute;
+
+        @apply top-6;
+        @apply right-6;
+    }
+
+    .sine-controls__group {
+        @apply flex;
+
+        @apply space-x-7;
+    }
+
+    .sine-controls__control {
+        @apply text-light;
+
+        @apply opacity-90;
+
+        @apply link--primary;
+    }
+
+    .sine-controls__button {
+        @apply block;
+        @apply box-content;
+
+        @apply size-7;
+    }
+
+    .sine__container:fullscreen {
+        .sine-controls {
+            @apply xl:top-7;
+            @apply xl:right-7;
+        }
+
+        .sine-controls__button {
+            @apply xl:size-8;
+        }
+    }
+
+    /*========== 
+        Thumbs
+    ==========*/
+    .sine-thumbs {
+        @apply size-lue;
+
+        @apply fill-primary;
+        @apply stroke-light;
+
+        @apply opacity-50;
+
+        @apply grayscale-100;
+
+        @apply scale-100;
+
+        &:focus-visible,
+        &:hover {
+            @apply opacity-100;
+
+            @apply grayscale-0;
+
+            @apply scale-115;
+        }
+    }
+
+    .sine__container:fullscreen {
+        .sine-thumbs {
+            @apply xl:size-9;
+        }
+    }
+
+    /*========== 
+        Title
+    ==========*/
+    .sine__title {
+        @apply absolute;
+
+        @apply top-6;
+        @apply left-6;
+
+        @apply text-light;
+    }
+
+    .sine-title {
+        @apply flex;
+        @apply items-center;
+
+        @apply space-x-5;
+    }
+
+    .sine-title__heading,
+    .sine-title__image {
+        @apply in-out-smooth;
+    }
+
+    .sine-title__date {
+        @apply text-xs;
+
+        @apply opacity-90;
+    }
+
+    .sine-title__heading {
+        @apply heading;
+
+        @apply text-lg;
+    }
+
+    .sine-title__image {
+        @apply size-8;
+
+        @apply rounded-full;
+    }
+
+    .sine__container:fullscreen {
+        .sine-title__heading {
+            @apply xl:text-2xl;
+        }
+
+        .sine-title__image {
+            @apply xl:size-lue;
+        }
+    }
+
+    /*========== 
+        Vote
+    ==========*/
+    .sine__vote {
+        @apply absolute;
+        @apply left-6;
+        @apply right-6;
+        @apply bottom-6;
+    }
+
+    .sine__container:fullscreen {
+        .sine__vote {
+            @apply xl:left-7;
+            @apply xl:right-7;
+            @apply xl:bottom-7;
+        }
+    }
+
+    .sine-vote {
+        @apply flex;
+
+        @apply justify-between;
+    }
+
+    /*========== 
+        Video
+    ==========*/
+    .sine__video {
+        @apply h-full;
+        @apply w-full;
+
+        @apply object-cover;
+    }
+}

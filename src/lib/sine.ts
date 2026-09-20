@@ -15,10 +15,8 @@ export const get_sine_by_id = createServerFn({ method: 'POST' })
             where: { id, deleted_at: null },
             select: {
                 created_at: true,
-                height: true,
                 id: true,
                 title: true,
-                width: true,
                 user: {
                     select: { id: true, username: true, avatar_url: true },
                 },
@@ -27,14 +25,10 @@ export const get_sine_by_id = createServerFn({ method: 'POST' })
 
         if (!sine) return null;
 
-        const { created_at, height, title, width, user } = sine;
+        const { created_at, title, user } = sine;
 
         return {
             created_at,
-            dimensions: {
-                height,
-                width,
-            },
             id,
             title,
             user: {

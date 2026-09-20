@@ -38,6 +38,10 @@
         @apply in-out-smooth;
     }
 
+    button {
+        @apply cursor-pointer;
+    }
+
     img {
         @apply w-full;
     }

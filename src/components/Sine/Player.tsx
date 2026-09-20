@@ -1,38 +1,44 @@
-import Video from './Video';
+import { createPlayer, Container, videoFeatures } from '@videojs/react';
+import { Video } from '@videojs/react/video';
 
-import ThumbsDown from '@/components/SVGs/ThumbsDown';
-import ThumbsUp from '@/components/SVGs/ThumbsUp';
+import Controls from './Controls';
+import Details from './Details';
+import Vote from './Vote';
 
 import type { SineSkeleton } from './Index';
 
+const { Player } = createPlayer({ features: videoFeatures });
+
 export default function Component({
-    dimensions,
-    handle_click,
+    created_at,
     id,
     title,
+    user,
 }: {
-    dimensions: SineSkeleton['dimensions'];
-    handle_click: Function;
+    created_at: SineSkeleton['created_at'];
     id: SineSkeleton['id'];
     title: SineSkeleton['title'];
+    user: SineSkeleton['user'];
 }) {
     return (
-        <div className="flex flex-nowrap items-center space-x-7 lg:space-x-8 mb-8 lg:mb-9">
-            <div>
-                <button className="thumbs" onClick={() => handle_click(-1)}>
-                    <ThumbsDown />
-                </button>
-            </div>
+        <Player>
+            <Container className="sine__container">
+                <Video
+                    autoPlay
+                    className="sine__video"
+                    loop
+                    muted
+                    playsInline
+                    title={title}
+                    src={`https://d3j2vjabzyd1kj.cloudfront.net/videos/${id}.mp4`}
+                />
 
-            <div className="aspect-video flex-1">
-                <Video dimensions={dimensions} id={id} title={title} />
-            </div>
+                <Details created_at={created_at} title={title} user={user} />
 
-            <div>
-                <button className="thumbs" onClick={() => handle_click(1)}>
-                    <ThumbsUp />
-                </button>
-            </div>
-        </div>
+                <Vote id={id} />
+
+                <Controls />
+            </Container>
+        </Player>
     );
 }

@@ -10,23 +10,20 @@ export default function Component({
     user: SineSkeleton['user'];
 }) {
     const date = new Intl.DateTimeFormat('en-CA', {
-        dateStyle: 'short',
+        dateStyle: 'medium',
         timeZone: 'America/Toronto',
     }).format(new Date(created_at));
 
     return (
-        <div className="space-y-6">
-            <div className="heading text-3xl lg:text-5xl">{title}</div>
-
-            <div className="flex space-x-6 items-center justify-center">
+        <div className="sine__title">
+            <div className="sine-title">
                 <div>
-                    <img className="size-lue rounded-full" src={user.img} />
+                    <img className="sine-title__image" src={user.img} />
                 </div>
 
                 <div>
-                    <div className="text-sm font-bold">{user.name}</div>
-
-                    <div className="text-xs">{date}</div>
+                    <div className="sine-title__heading">{title}</div>
+                    <div className="sine-title__date">{date}</div>
                 </div>
             </div>
         </div>

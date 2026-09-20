@@ -91,6 +91,8 @@
 }
 
 @utility link--opacity {
+    @apply link;
+
     @apply hover:opacity-80;
     @apply focus-visible:opacity-80;
 }
@@ -112,6 +114,8 @@
     @apply tracking-wide;
 
     @apply text-center;
+
+    @apply leading-none;
 }
 
 @utility title {

@@ -85,60 +85,19 @@
         }
     }
 
-    .header__icon {
-        animation: header__icon 5s cubic-bezier(0, 0, 0.5, 1) infinite alternate;
+    .horn {
+        animation: horn 5s cubic-bezier(0, 0, 0.5, 1) infinite alternate;
+
+        @apply link--opacity;
     }
 
-    @keyframes header__icon {
+    @keyframes horn {
         from {
             transform: scale(1) rotate(-5deg);
         }
 
         to {
             transform: scale(1.25) rotate(10deg);
-        }
-    }
-
-    .sine {
-        .sine__title {
-            @apply absolute;
-            @apply gutter;
-            @apply top-10;
-
-            @apply text-light;
-
-            @apply pointer-events-none;
-
-            @apply z-10;
-
-            /* position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem;
-            color: red;
-            font-weight: 600;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), transparent);
-            pointer-events: none;
-            z-index: 1; */
-        }
-    }
-
-    .thumbs {
-        @apply size-8;
-        @apply lg:size-lue;
-
-        @apply cursor-pointer;
-
-        @apply fill-transparent;
-        @apply stroke-dark;
-
-        &:focus-visible,
-        &:hover {
-            @apply stroke-primary;
-            @apply fill-primary;
-
-            @apply scale-115;
         }
     }
 }
