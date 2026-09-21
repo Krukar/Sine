@@ -25,11 +25,11 @@ export const Route = createRootRoute({
                 content: 'width=device-width, initial-scale=1',
             },
             {
-                title: 'Sine',
+                title: 'Six Dot Video',
             },
             {
                 name: 'description',
-                content: 'Vines from the 6ix',
+                content: 'Vines from the Six',
             },
         ],
         links: [

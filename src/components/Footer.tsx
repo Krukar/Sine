@@ -27,7 +27,17 @@ export default function Component() {
                             </li>
 
                             <li>
-                                <a className="link--opacity" href="https://www.fuckdougford.ca/" target="_blank">
+                                <a className="link--opacity" href="https://www.oliviachow.ca/" target="_blank">
+                                    Vote Chow
+                                </a>
+                            </li>
+
+                            <li>
+                                <div className="text-neutral">|</div>
+                            </li>
+
+                            <li>
+                                <a className="link--opacity" href="https://protestdougford.com/" target="_blank">
                                     Doug Ford Sucks
                                 </a>
                             </li>

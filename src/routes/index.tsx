@@ -9,7 +9,7 @@ export const Route = createFileRoute('/')({
     validateSearch: z.object({ id: z.string().length(6).optional() }),
     loaderDeps: ({ search }) => ({ id: search.id }),
     loader: async ({ deps }) => {
-        return get_sine_by_id({ data: { id: deps.id || 'NJcXbE' } });
+        return get_sine_by_id({ data: { id: deps.id || 'bxah5P' } });
     },
 });
 

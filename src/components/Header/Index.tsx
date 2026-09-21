@@ -18,7 +18,7 @@ export default function Component() {
                     <div>
                         <div className="translate-y-5">
                             <Link className="heading text-3xl lg:text-4xl tracking-widest link--dark" to="/">
-                                6ine
+                                6ix<span className="text-dark">.</span>video
                             </Link>
                         </div>
                     </div>

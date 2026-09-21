@@ -53,22 +53,19 @@
         Thumbs
     ==========*/
     .sine-thumbs {
-        @apply size-lue;
+        @apply size-8;
 
-        @apply fill-primary;
+        @apply fill-transparent;
         @apply stroke-light;
 
-        @apply opacity-50;
-
-        @apply grayscale-100;
-
+        @apply opacity-90;
         @apply scale-100;
 
         &:focus-visible,
         &:hover {
-            @apply opacity-100;
+            @apply fill-light;
 
-            @apply grayscale-0;
+            @apply opacity-100;
 
             @apply scale-115;
         }
