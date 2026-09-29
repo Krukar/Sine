@@ -5,6 +5,8 @@ import { Auth } from '@/lib/auth';
 
 import { get_profile } from '@/lib/user';
 
+// import Settings from '@/components/Settings/Index';
+
 export const Route = createFileRoute('/profile')({
     component: Profile,
     beforeLoad: async () => {
@@ -16,19 +18,25 @@ export const Route = createFileRoute('/profile')({
 });
 
 function Profile() {
+    // const { user } = Route.useLoaderData();
+
     return (
         <div>
             <section>
-                <h1>Profile</h1>
+                <h1>Settings</h1>
 
-                <div>set display name</div>
+                {/* <Settings user={user} /> */}
             </section>
 
             <section>
-                <h1>Sign out</h1>
+                <h1>Sign Out</h1>
 
                 <div>
-                    <SignOutButton redirectUrl="/" />
+                    <SignOutButton redirectUrl="/">
+                        <button className="button--primary" type="button">
+                            Now Leaving The 6ix
+                        </button>
+                    </SignOutButton>
                 </div>
             </section>
         </div>

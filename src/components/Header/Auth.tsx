@@ -7,13 +7,17 @@ export default function Component() {
     return (
         <div className="auth flex items-center space-x-7">
             <Show when="signed-in">
-                <Link to="/profile" className="size-8 link--dark">
+                <Link to="/profile" className="auth-button">
                     <User />
                 </Link>
             </Show>
 
             <Show when="signed-out">
-                <SignInButton />
+                <SignInButton mode="modal">
+                    <button className="auth-button" type="button">
+                        <User />
+                    </button>
+                </SignInButton>
             </Show>
         </div>
     );

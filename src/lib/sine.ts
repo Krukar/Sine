@@ -18,7 +18,7 @@ export const get_sine_by_id = createServerFn({ method: 'POST' })
                 id: true,
                 title: true,
                 user: {
-                    select: { id: true, username: true, avatar_url: true },
+                    select: { id: true },
                 },
             },
         });

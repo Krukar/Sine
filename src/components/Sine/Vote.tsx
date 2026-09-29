@@ -7,9 +7,12 @@ import { add_anon_reaction } from '@/lib/reaction';
 import { get_next_sine } from '@/lib/sine';
 
 import type { SineSkeleton } from './Index';
+import { usePlayer } from './Video';
 
 export default function Component({ id }: { id: SineSkeleton['id'] }) {
     const navigate = useNavigate();
+    const muted = usePlayer((s) => s.muted);
+    const toggle_muted = usePlayer((s) => s.toggleMuted);
 
     const handle_click = async (value: -1 | 1) => {
         // TODO: Handle success
@@ -24,6 +27,8 @@ export default function Component({ id }: { id: SineSkeleton['id'] }) {
                 current_video_id: id,
             },
         });
+
+        if (muted) toggle_muted();
 
         if (!next_video_id) return;
 

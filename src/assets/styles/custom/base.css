@@ -32,6 +32,14 @@
         @apply title;
     }
 
+    h2 {
+        @apply text-2xl;
+        @apply lg:text-4xl;
+
+        @apply mb-5;
+        @apply lg:mb-6;
+    }
+
     a,
     input,
     button {

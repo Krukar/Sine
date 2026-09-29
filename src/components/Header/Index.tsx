@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 
-// import Auth from './Auth';
+import Auth from './Auth';
 import Banner from './Banner';
 import Horn from './Horn';
 
@@ -10,20 +10,22 @@ export default function Component() {
             <Banner />
 
             <header className="bg-primary text-light shadow-lg">
-                <div className="flex justify-between items-center py-6">
-                    <div className="flex-1 flex translate-y-5">
+                <div className="flex justify-between items-center pt-6">
+                    <div className="flex-1 flex">
                         <Horn />
                     </div>
 
                     <div>
-                        <div className="translate-y-5">
+                        <div className="">
                             <Link className="heading text-3xl lg:text-4xl tracking-widest link--dark" to="/">
-                                6ix<span className="text-dark">.</span>video
+                                6ix<span className="text-dark">.</span>Video
                             </Link>
                         </div>
                     </div>
 
-                    <div className="flex-1 flex justify-end">{/* <Auth /> */}</div>
+                    <div className="flex-1 flex justify-end">
+                        <Auth />
+                    </div>
                 </div>
             </header>
 

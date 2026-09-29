@@ -4,7 +4,7 @@ import { MinimalVideoSkin, Video } from '@videojs/react/video';
 import '@videojs/react/video/minimal-skin.css';
 import type { SineSkeleton } from './Index';
 
-const { Player } = createPlayer({ features: videoFeatures });
+const { Player, usePlayer } = createPlayer({ features: videoFeatures });
 
 export default function Component({ id, title }: { id: SineSkeleton['id']; title: SineSkeleton['title'] }) {
     const src = `https://d3j2vjabzyd1kj.cloudfront.net/videos/${id}.mp4`;
@@ -21,3 +21,5 @@ export default function Component({ id, title }: { id: SineSkeleton['id']; title
         </Player>
     );
 }
+
+export { usePlayer };

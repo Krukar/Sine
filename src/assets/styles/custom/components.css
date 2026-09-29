@@ -1,8 +1,9 @@
 @layer components {
-    .auth {
-        button {
-            @apply button--light;
-        }
+    .auth-button {
+        @apply size-6.5;
+        @apply md:size-8;
+
+        @apply link--dark;
     }
 
     .custom-scrollbar::-webkit-scrollbar {

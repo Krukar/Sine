@@ -13,8 +13,8 @@
     .sine-controls {
         @apply absolute;
 
-        @apply top-6;
-        @apply right-6;
+        @apply top-7;
+        @apply right-7;
     }
 
     .sine-controls__group {
@@ -36,17 +36,6 @@
         @apply box-content;
 
         @apply size-7;
-    }
-
-    .sine__container:fullscreen {
-        .sine-controls {
-            @apply xl:top-7;
-            @apply xl:right-7;
-        }
-
-        .sine-controls__button {
-            @apply xl:size-8;
-        }
     }
 
     /*========== 
@@ -71,20 +60,14 @@
         }
     }
 
-    .sine__container:fullscreen {
-        .sine-thumbs {
-            @apply xl:size-9;
-        }
-    }
-
     /*========== 
         Title
     ==========*/
     .sine__title {
         @apply absolute;
 
-        @apply top-6;
-        @apply left-6;
+        @apply top-7;
+        @apply left-7;
 
         @apply text-light;
     }
@@ -119,32 +102,14 @@
         @apply rounded-full;
     }
 
-    .sine__container:fullscreen {
-        .sine-title__heading {
-            @apply xl:text-2xl;
-        }
-
-        .sine-title__image {
-            @apply xl:size-lue;
-        }
-    }
-
     /*========== 
         Vote
     ==========*/
     .sine__vote {
         @apply absolute;
-        @apply left-6;
-        @apply right-6;
-        @apply bottom-6;
-    }
-
-    .sine__container:fullscreen {
-        .sine__vote {
-            @apply xl:left-7;
-            @apply xl:right-7;
-            @apply xl:bottom-7;
-        }
+        @apply left-7;
+        @apply right-7;
+        @apply bottom-7;
     }
 
     .sine-vote {
@@ -161,5 +126,32 @@
         @apply w-full;
 
         @apply object-cover;
+    }
+
+    /*========== 
+        Fullscreen
+    ==========*/
+    .sine__container:fullscreen {
+        .sine-controls__button {
+            @apply xl:size-8;
+        }
+
+        .sine-thumbs {
+            @apply xl:size-9;
+        }
+
+        .sine-title__heading {
+            @apply xl:text-2xl;
+        }
+
+        .sine-title__image {
+            @apply xl:size-lue;
+        }
+
+        .sine__vote {
+            @apply xl:left-7;
+            @apply xl:right-7;
+            @apply xl:bottom-7;
+        }
     }
 }

@@ -4,21 +4,21 @@
 @utility button {
     @apply w-full;
 
-    @apply px-6;
-    @apply lg:px-7;
-    @apply py-5;
+    @apply p-6;
 
-    @apply rounded-sm;
+    @apply rounded-lg;
 
     @apply font-heading;
     @apply font-medium;
 
-    @apply lg:text-lg;
+    @apply text-base;
 
     @apply tracking-wider;
     @apply uppercase;
 
     @apply leading-none;
+
+    @apply [text-box:trim-both_cap_alphabetic];
 
     @apply cursor-pointer;
 
@@ -113,17 +113,17 @@
     @apply font-bold;
     @apply tracking-wide;
 
-    @apply text-center;
-
     @apply leading-none;
 }
 
 @utility title {
     @apply heading;
 
-    @apply text-4xl;
-    @apply lg:text-6xl;
-
     @apply mb-7;
     @apply lg:mb-8;
+
+    @apply text-center;
+
+    @apply text-4xl;
+    @apply lg:text-6xl;
 }

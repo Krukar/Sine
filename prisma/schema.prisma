@@ -12,14 +12,28 @@ model User {
   clerk_id   String   @unique
   created_at DateTime @default(now())
 
-  username String? @unique @db.VarChar(64)
-  avatar_url String?
+  settings  UserSettings?
 
   reactions Reaction[]
 
   videos Video[]
 
   @@map("users")
+}
+
+model UserSettings {
+  user_id String @id @db.VarChar(12)
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  name String? @unique @db.VarChar(128)
+  avatar_url String?
+  neighbourhood  String? @db.VarChar(128)
+  area_code  String? @db.VarChar(3)
+  drake_album String? @db.VarChar(128)
+
+  updated_at DateTime @default(now()) @updatedAt
+
+  @@map("user_settings")
 }
 
 model Video {
