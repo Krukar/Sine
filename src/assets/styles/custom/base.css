@@ -42,7 +42,8 @@
 
     a,
     input,
-    button {
+    button,
+    select {
         @apply in-out-smooth;
     }
 
@@ -54,7 +55,8 @@
         @apply w-full;
     }
 
-    input {
+    input,
+    select {
         @apply outline-0;
 
         @apply accent-primary;

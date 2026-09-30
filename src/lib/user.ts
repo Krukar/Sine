@@ -6,11 +6,29 @@ import { prisma } from '@/db';
 
 import { nanoid } from 'nanoid';
 
+import { z } from 'zod';
+
 export type User = {
     id: string;
-    img: string;
-    name: string;
-    neighbourhood: 'old_toronto' | 'etobicoke' | 'north_york' | 'scarborough' | 'york' | 'east_york' | null;
+    settings: {
+        area_code?: '416' | '647' | '437' | '942' | null;
+        drake_album:
+            | 'Thank Me Later'
+            | 'Take Care'
+            | 'Nothing Was the Same'
+            | 'Views'
+            | 'Scorpion'
+            | 'Certified Lover Boy'
+            | 'Honestly, Nevermind'
+            | 'For All the Dogs'
+            | 'Iceman'
+            | 'Maid of Honour'
+            | 'Habibti'
+            | null;
+        neighbourhood?: 'East York' | 'Etobicoke' | 'North York' | 'Old Toronto' | 'Scarborough' | 'York' | null;
+        name?: string | null;
+    };
+    img?: string | null;
 };
 
 const get_or_create_user = (clerk_id: string) =>
@@ -21,7 +39,7 @@ const get_or_create_user = (clerk_id: string) =>
         select: { id: true },
     });
 
-export const get_profile = createServerFn({ method: 'GET' }).handler(async () => {
+export const get_profile = createServerFn({ method: 'GET' }).handler(async (): Promise<{ user: User }> => {
     const { userId } = await auth();
 
     if (!userId) throw new Error('Unauthorized');
@@ -32,27 +50,34 @@ export const get_profile = createServerFn({ method: 'GET' }).handler(async () =>
         where: { id },
         select: {
             settings: {
-                select: { name: true, avatar_url: true, neighbourhood: true },
+                select: { name: true, area_code: true, avatar_url: true, drake_album: true, neighbourhood: true },
             },
-            videos: {
-                where: { deleted_at: null },
-                orderBy: { created_at: 'desc' },
-                select: { id: true, title: true },
-            },
-            reactions: {
-                where: { video: { deleted_at: null } },
-                orderBy: { updated_at: 'desc' },
-                select: { value: true, video: { select: { id: true, title: true } } },
-            },
+            // videos: {
+            //     where: { deleted_at: null },
+            //     orderBy: { created_at: 'desc' },
+            //     select: { id: true, title: true },
+            // },
+            // reactions: {
+            //     where: { video: { deleted_at: null } },
+            //     orderBy: { updated_at: 'desc' },
+            //     select: { value: true, video: { select: { id: true, title: true } } },
+            // },
         },
     });
 
     return {
         user: {
             id,
-            img: user.settings?.avatar_url || '',
-            name: user.settings?.name || 'Drake #1 Fan',
-            neighbourhood: user.settings?.neighbourhood,
+            settings: {
+                // @ts-ignore
+                area_code: user.settings?.area_code,
+                // @ts-ignore
+                drake_album: user.settings?.drake_album,
+                name: user.settings?.name,
+                // @ts-ignore
+                neighbourhood: user.settings?.neighbourhood,
+            },
+            img: user.settings?.avatar_url,
         },
     };
 });
@@ -69,3 +94,50 @@ export const get_user_id = createServerFn({ method: 'GET' }).handler(async (): P
 
     return user?.id ?? null;
 });
+
+export const update_settings = createServerFn({ method: 'POST' })
+    .validator(
+        z.object({
+            area_code: z.enum(['416', '647', '437', '942']).nullable(),
+            drake_album: z
+                .enum([
+                    'Thank Me Later',
+                    'Take Care',
+                    'Nothing Was the Same',
+                    'Views',
+                    'Scorpion',
+                    'Certified Lover Boy',
+                    'Honestly, Nevermind',
+                    'For All the Dogs',
+                    'Iceman',
+                    'Maid of Honour',
+                    'Habibti',
+                ])
+                .nullable(),
+            name: z.string().trim().min(3).max(128),
+            neighbourhood: z
+                .enum(['East York', 'Etobicoke', 'North York', 'Old Toronto', 'Scarborough', 'York'])
+                .nullable(),
+        }),
+    )
+    .handler(async ({ data }): Promise<{ success: boolean }> => {
+        const { userId } = await auth();
+
+        if (!userId) throw new Error('Unauthorized');
+
+        const { id } = await get_or_create_user(userId);
+
+        await prisma.user.update({
+            where: { id },
+            data: {
+                settings: {
+                    upsert: {
+                        create: data,
+                        update: data,
+                    },
+                },
+            },
+        });
+
+        return { success: true };
+    });

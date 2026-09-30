@@ -18,7 +18,12 @@ export const get_sine_by_id = createServerFn({ method: 'POST' })
                 id: true,
                 title: true,
                 user: {
-                    select: { id: true },
+                    select: {
+                        id: true,
+                        settings: {
+                            select: { avatar_url: true },
+                        },
+                    },
                 },
             },
         });
@@ -32,8 +37,7 @@ export const get_sine_by_id = createServerFn({ method: 'POST' })
             id,
             title,
             user: {
-                img: user.avatar_url || '/logo512.png',
-                name: user.username || 'Drake #1 Fan',
+                img: user.settings?.avatar_url || '/logo512.png',
             },
         };
     });

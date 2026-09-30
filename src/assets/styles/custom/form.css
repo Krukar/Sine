@@ -1,34 +1,25 @@
 @layer components {
     .form {
         @apply space-y-8;
+    }
 
-        .fieldset {
-            @apply space-y-7;
+    .fieldset {
+        @apply space-y-7;
+    }
 
-            .label {
-                @apply flex;
-                @apply flex-col;
+    .label {
+        @apply flex;
+        @apply flex-col;
+    }
 
-                .input {
-                    @apply mt-4;
+    .input {
+        @apply mt-4;
 
-                    @apply border-b-2;
-                    @apply border-neutral;
+        @apply border-b-2;
+        @apply border-neutral;
 
-                    @apply focus:border-primary;
+        @apply focus:border-primary;
 
-                    @apply valid:border-dark;
-                }
-            }
-
-            .radio {
-                @apply flex;
-                @apply items-center;
-
-                @apply space-x-5;
-
-                @apply capitalize;
-            }
-        }
+        @apply valid:border-dark;
     }
 }

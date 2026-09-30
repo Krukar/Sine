@@ -101,4 +101,17 @@
             transform: scale(1.25) rotate(10deg);
         }
     }
+
+    .settings__item {
+        @apply flex;
+        @apply flex-col;
+        @apply sm:flex-row;
+
+        @apply sm:justify-between;
+        @apply sm:items-center;
+
+        @apply space-y-6;
+
+        @apply py-7;
+    }
 }

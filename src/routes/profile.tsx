@@ -5,7 +5,7 @@ import { Auth } from '@/lib/auth';
 
 import { get_profile } from '@/lib/user';
 
-// import Settings from '@/components/Settings/Index';
+import Settings from '@/components/Settings/Index';
 
 export const Route = createFileRoute('/profile')({
     component: Profile,
@@ -18,14 +18,14 @@ export const Route = createFileRoute('/profile')({
 });
 
 function Profile() {
-    // const { user } = Route.useLoaderData();
+    const { user } = Route.useLoaderData();
 
     return (
         <div>
             <section>
                 <h1>Settings</h1>
 
-                {/* <Settings user={user} /> */}
+                <Settings user={user} />
             </section>
 
             <section>

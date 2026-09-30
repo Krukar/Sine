@@ -42,7 +42,7 @@
         Thumbs
     ==========*/
     .sine-thumbs {
-        @apply size-8;
+        @apply size-7.5;
 
         @apply fill-transparent;
         @apply stroke-light;

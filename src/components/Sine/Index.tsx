@@ -5,8 +5,7 @@ export type SineSkeleton = {
     id: string;
     title: string;
     user: {
-        img: string;
-        name: string;
+        img: string | null;
     };
 };
 
