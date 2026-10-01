@@ -28,6 +28,10 @@ function Profile() {
                 <Settings user={user} />
             </section>
 
+            {/* <section className="bg-red-500">
+                <h1>History</h1>
+            </section> */}
+
             <section>
                 <h1>Sign Out</h1>
 

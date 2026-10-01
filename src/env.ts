@@ -12,7 +12,6 @@ export const env = createEnv({
 
     client: {
         VITE_CLERK_PUBLISHABLE_KEY: z.string().min(1),
-        VITE_DISPLAY_NAME: z.string().min(1),
     },
 
     /**

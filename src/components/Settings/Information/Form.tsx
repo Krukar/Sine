@@ -107,7 +107,7 @@ export default function Component({
             </fieldset>
 
             <button className="button--primary" disabled={is_loading} type="submit">
-                Save
+                Save Settings
             </button>
         </form>
     );

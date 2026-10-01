@@ -11,7 +11,8 @@ import { z } from 'zod';
 export type User = {
     id: string;
     settings: {
-        area_code?: '416' | '647' | '437' | '942' | null;
+        area_code: '416' | '647' | '437' | '942' | null;
+        avatar_url: string | null;
         drake_album:
             | 'Thank Me Later'
             | 'Take Care'
@@ -25,10 +26,9 @@ export type User = {
             | 'Maid of Honour'
             | 'Habibti'
             | null;
-        neighbourhood?: 'East York' | 'Etobicoke' | 'North York' | 'Old Toronto' | 'Scarborough' | 'York' | null;
-        name?: string | null;
+        name: string | null;
+        neighbourhood: 'East York' | 'Etobicoke' | 'North York' | 'Old Toronto' | 'Scarborough' | 'York' | null;
     };
-    img?: string | null;
 };
 
 const get_or_create_user = (clerk_id: string) =>
@@ -50,7 +50,13 @@ export const get_profile = createServerFn({ method: 'GET' }).handler(async (): P
         where: { id },
         select: {
             settings: {
-                select: { name: true, area_code: true, avatar_url: true, drake_album: true, neighbourhood: true },
+                select: {
+                    name: true,
+                    avatar_url: true,
+                    area_code: true,
+                    drake_album: true,
+                    neighbourhood: true,
+                },
             },
             // videos: {
             //     where: { deleted_at: null },
@@ -71,13 +77,13 @@ export const get_profile = createServerFn({ method: 'GET' }).handler(async (): P
             settings: {
                 // @ts-ignore
                 area_code: user.settings?.area_code,
+                avatar_url: user.settings?.avatar_url || null,
                 // @ts-ignore
                 drake_album: user.settings?.drake_album,
-                name: user.settings?.name,
+                name: user.settings?.name || null,
                 // @ts-ignore
                 neighbourhood: user.settings?.neighbourhood,
             },
-            img: user.settings?.avatar_url,
         },
     };
 });
