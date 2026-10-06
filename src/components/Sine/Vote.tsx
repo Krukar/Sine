@@ -4,35 +4,42 @@ import ThumbsDown from '@/components/SVGs/ThumbsDown';
 import ThumbsUp from '@/components/SVGs/ThumbsUp';
 
 import { add_anon_reaction } from '@/lib/reaction';
-import { get_next_sine } from '@/lib/sine';
+import { get_next_sine_id } from '@/lib/sine';
 
 import type { SineSkeleton } from './Index';
+
 import { usePlayer } from './Video';
 
-export default function Component({ id }: { id: SineSkeleton['id'] }) {
+export default function Component({ id, tag }: { id: SineSkeleton['id']; tag: SineSkeleton['tag'] }) {
     const navigate = useNavigate();
     const muted = usePlayer((s) => s.muted);
     const toggle_muted = usePlayer((s) => s.toggleMuted);
 
     const handle_click = async (value: -1 | 1) => {
-        // TODO: Handle success
-        await add_anon_reaction({
-            data: {
-                video_id: id,
-                value,
-            },
-        });
-        const next_video_id = await get_next_sine({
-            data: {
-                current_video_id: id,
-            },
-        });
+        try {
+            // TODO: Handle success
+            await add_anon_reaction({
+                data: {
+                    video_id: id,
+                    value,
+                },
+            });
 
-        if (muted) toggle_muted();
+            const next_video_id = await get_next_sine_id({
+                data: {
+                    current_id: id,
+                    tag,
+                },
+            });
 
-        if (!next_video_id) return;
+            if (muted) toggle_muted();
 
-        navigate({ to: '/', search: { id: next_video_id }, replace: true });
+            if (!next_video_id) return;
+
+            navigate({ to: '/', search: { id: next_video_id, tag }, replace: true });
+        } catch (err) {
+            if (import.meta.env.DEV) console.log(err);
+        }
     };
 
     return (

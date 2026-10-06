@@ -18,7 +18,13 @@ export default function Component({
         <div className="sine__title">
             <div className="sine-title">
                 <div>
-                    <img className="sine-title__image" src={user.img} />
+                    <img
+                        className="sine-title__image"
+                        src={
+                            user.img ||
+                            'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvdXBsb2FkZWQvaW1nXzNLSHhBTlVFQ09vWktyQTQyck0yOTJLWDliaiJ9'
+                        }
+                    />
                 </div>
 
                 <div>

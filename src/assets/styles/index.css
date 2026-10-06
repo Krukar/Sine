@@ -13,6 +13,7 @@
 }
 
 @theme {
+    --breakpoint-xs: 22.5rem; /* 360px */
     --color-dark: #0a0203; /* Raptors Black */
     --color-light: #ebe9e9; /* Default White */
     --color-error: #ae132a; /* Raptors Red */

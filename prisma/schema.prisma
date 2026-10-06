@@ -7,12 +7,76 @@ datasource db {
   provider = "postgresql"
 }
 
+model Reaction {
+  id       String @id @default(uuid(7)) @db.Uuid
+  user_id  String @db.VarChar(12)
+  video_id String @db.VarChar(6)
+
+  value Int
+
+  user  User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  video Video @relation(fields: [video_id], references: [id], onDelete: Cascade)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  @@unique([user_id, video_id])
+  @@index([video_id])
+  @@map("reactions")
+}
+
+model ReactionAnon {
+  id       String @id @default(uuid(7)) @db.Uuid
+  video_id String @db.VarChar(6)
+  video    Video  @relation(fields: [video_id], references: [id], onDelete: Cascade)
+
+  value Int
+
+  created_at DateTime @default(now())
+
+  @@index([video_id, value])
+  @@map("anon_reactions")
+}
+
+model Tag {
+  name    String @db.VarChar(128)
+  videoId String @map("video_id")
+  video   Video  @relation(fields: [videoId], references: [id], onDelete: Cascade)
+
+  @@id([videoId, name])
+  @@index([name])
+  @@map("tags")
+}
+
+model Video {
+  id      String @id @db.VarChar(6)
+  user_id String @db.VarChar(12)
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  title  String @db.VarChar(280)
+  width  Int
+  height Int
+
+  created_at DateTime  @default(now())
+  updated_at DateTime  @default(now()) @updatedAt
+  deleted_at DateTime?
+
+  reactions      Reaction[]
+  anon_reactions ReactionAnon[]
+
+  tags Tag[]
+
+  @@index([user_id, created_at])
+  @@index([created_at])
+  @@map("videos")
+}
+
 model User {
   id         String   @id @db.VarChar(12)
   clerk_id   String   @unique
   created_at DateTime @default(now())
 
-  settings  UserSettings?
+  settings UserSettings?
 
   reactions Reaction[]
 
@@ -25,67 +89,13 @@ model UserSettings {
   user_id String @id @db.VarChar(12)
   user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
-  name String? @unique @db.VarChar(128)
-  avatar_url String?
-  neighbourhood  String? @db.VarChar(128)
-  area_code  String? @db.VarChar(3)
-  drake_album String? @db.VarChar(128)
+  name          String? @unique @db.VarChar(128)
+  avatar_url    String?
+  neighbourhood String? @db.VarChar(128)
+  area_code     String? @db.VarChar(3)
+  drake_album   String? @db.VarChar(128)
 
   updated_at DateTime @default(now()) @updatedAt
 
   @@map("user_settings")
-}
-
-model Video {
-  id      String @id @db.VarChar(6)
-  user_id String @db.VarChar(12)
-  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
-
-  title       String @db.VarChar(280)
-  width       Int
-  height      Int
-
-  created_at DateTime  @default(now())
-  updated_at DateTime  @default(now()) @updatedAt
-  deleted_at DateTime?
-
-  reactions Reaction[]
-  anon_reactions ReactionAnon[]
-
-  @@index([user_id, created_at])
-  @@index([created_at])
-
-  @@map("videos")
-}
-
-model Reaction {
-  id String @id @default(uuid(7)) @db.Uuid
-  user_id  String @db.VarChar(12)
-  video_id String  @db.VarChar(6)
-
-  value Int
-
-  user  User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  video Video @relation(fields: [video_id], references: [id], onDelete: Cascade)
-
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
-
-  @@unique([user_id, video_id])
-  @@index([video_id])
-
-  @@map("reactions")
-}
-
-model ReactionAnon {
-  id       String @id @default(uuid(7)) @db.Uuid
-  video_id String  @db.VarChar(6)
-  video    Video  @relation(fields: [video_id], references: [id], onDelete: Cascade)
-
-  value Int
-
-  created_at DateTime @default(now())
-
-  @@index([video_id, value])
-  @@map("anon_reactions")
 }

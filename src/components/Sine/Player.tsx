@@ -12,11 +12,13 @@ const { Player } = createPlayer({ features: videoFeatures });
 export default function Component({
     created_at,
     id,
+    tag,
     title,
     user,
 }: {
     created_at: SineSkeleton['created_at'];
     id: SineSkeleton['id'];
+    tag: SineSkeleton['tag'];
     title: SineSkeleton['title'];
     user: SineSkeleton['user'];
 }) {
@@ -35,7 +37,7 @@ export default function Component({
 
                 <Details created_at={created_at} title={title} user={user} />
 
-                <Vote id={id} />
+                <Vote id={id} tag={tag} />
 
                 <Controls />
             </Container>

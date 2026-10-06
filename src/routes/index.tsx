@@ -1,29 +1,45 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, notFound } from '@tanstack/react-router';
 
 import { get_sine_by_id } from '@/lib/sine';
 
 import * as z from 'zod';
 
+import Sine from '@/components/Sine/Index';
+
 export const Route = createFileRoute('/')({
     component: Home,
-    validateSearch: z.object({ id: z.string().length(6).optional() }),
-    loaderDeps: ({ search }) => ({ id: search.id }),
+    validateSearch: z.object({
+        id: z.string().length(6).optional(),
+        tag: z
+            .string()
+            .regex(/^[a-z0-9_]{3,128}$/)
+            .optional(),
+    }),
+    loaderDeps: ({ search }) => ({ id: search.id, tag: search.tag }),
     loader: async ({ deps }) => {
-        return get_sine_by_id({ data: { id: deps.id || 'bxah5P' } });
+        try {
+            const { id, tag } = deps;
+
+            const sine = await get_sine_by_id({ data: { id: id || 'bxah5P' } });
+
+            return { sine, tag };
+        } catch (err) {
+            if (import.meta.env.DEV) console.log(err);
+
+            throw notFound();
+        }
     },
 });
 
-import Sine from '@/components/Sine/Index';
-
 function Home() {
-    const sine = Route.useLoaderData();
+    const { sine, tag } = Route.useLoaderData();
 
     if (!sine) throw new Error('Failed to load sine.');
 
     return (
         <div>
             <section>
-                <Sine {...sine} />
+                <Sine {...sine} tag={tag} />
             </section>
         </div>
     );
