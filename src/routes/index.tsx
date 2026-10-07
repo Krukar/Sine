@@ -20,7 +20,7 @@ export const Route = createFileRoute('/')({
         try {
             const { id, tag } = deps;
 
-            const sine = await get_sine_by_id({ data: { id: id || 'bxah5P' } });
+            const sine = await get_sine_by_id({ data: { id: id || 'SwuFvx' } });
 
             return { sine, tag };
         } catch (err) {

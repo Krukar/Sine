@@ -1,7 +1,13 @@
 {
     "name": "sine",
-    "private": true,
     "type": "module",
+    "version": "0.0.2",
+    "author": "Krukar",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Krukar/Sine.git"
+    },
+    "license": "AGPL-3.0",
     "scripts": {
         "dev": "vite dev --port 3000",
         "generate-routes": "tsr generate",

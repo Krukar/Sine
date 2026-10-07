@@ -26,3 +26,8 @@ VITE_CLERK_PUBLISHABLE_KEY=Vite Clerk key
 
 - Started versions
 - Added settings and avatar to profile page
+
+### v0.0.2
+
+- Changed videos from cover to contain and added bg-dark to the container
+- DB updates

@@ -46,6 +46,8 @@ export const get_profile = createServerFn({ method: 'GET' }).handler(async (): P
 
     const { id } = await get_or_create_user(userId);
 
+    console.log('new id', nanoid(6));
+
     const user = await prisma.user.findUniqueOrThrow({
         where: { id },
         select: {

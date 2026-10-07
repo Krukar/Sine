@@ -4,6 +4,8 @@
     }
 
     .sine__container {
+        @apply bg-dark;
+
         @apply aspect-video;
     }
 
@@ -125,7 +127,7 @@
         @apply h-full;
         @apply w-full;
 
-        @apply object-cover;
+        @apply object-contain;
     }
 
     /*========== 
