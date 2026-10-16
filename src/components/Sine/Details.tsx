@@ -1,35 +1,27 @@
 import type { SineSkeleton } from './Index';
 
-export default function Component({
-    created_at,
-    title,
-    user,
-}: {
-    created_at: SineSkeleton['created_at'];
-    title: SineSkeleton['title'];
-    user: SineSkeleton['user'];
-}) {
-    const date = new Intl.DateTimeFormat('en-CA', {
-        dateStyle: 'medium',
-        timeZone: 'America/Toronto',
-    }).format(new Date(created_at));
+import Tags from './Tags';
 
+export default function Component({
+    creator,
+    tags,
+    title,
+}: {
+    tags: SineSkeleton['tags'];
+    creator: SineSkeleton['creator'];
+    title: SineSkeleton['title'];
+}) {
     return (
-        <div className="sine__title">
-            <div className="sine-title">
+        <div className="sine__details">
+            <div className="sine-details">
                 <div>
-                    <img
-                        className="sine-title__image"
-                        src={
-                            user.img ||
-                            'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvdXBsb2FkZWQvaW1nXzNLSHhBTlVFQ09vWktyQTQyck0yOTJLWDliaiJ9'
-                        }
-                    />
+                    <img className="sine-details__image" src={creator.img} />
                 </div>
 
                 <div>
-                    <div className="sine-title__heading">{title}</div>
-                    <div className="sine-title__date">{date}</div>
+                    <div className="sine-details__heading">{title}</div>
+
+                    <Tags items={tags} />
                 </div>
             </div>
         </div>

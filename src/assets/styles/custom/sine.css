@@ -41,6 +41,59 @@
     }
 
     /*========== 
+        Details
+    ==========*/
+    .sine__details {
+        @apply absolute;
+
+        @apply top-7;
+        @apply left-7;
+
+        @apply text-light;
+    }
+
+    .sine-details {
+        @apply flex;
+        @apply items-center;
+
+        @apply space-x-5;
+    }
+
+    .sine-details__heading,
+    .sine-details__image {
+        @apply in-out-smooth;
+    }
+
+    .sine-details__heading {
+        @apply heading;
+
+        @apply text-lg;
+
+        @apply mb-3;
+    }
+
+    .sine-details__image {
+        @apply size-8;
+
+        @apply rounded-full;
+    }
+
+    /*========== 
+        Tags
+    ==========*/
+    .sine-tags {
+        @apply flex;
+
+        @apply space-x-4;
+
+        @apply text-xs;
+    }
+
+    .sine-tags__items {
+        @apply flex;
+    }
+
+    /*========== 
         Thumbs
     ==========*/
     .sine-thumbs {
@@ -60,48 +113,10 @@
 
             @apply scale-115;
         }
-    }
 
-    /*========== 
-        Title
-    ==========*/
-    .sine__title {
-        @apply absolute;
-
-        @apply top-7;
-        @apply left-7;
-
-        @apply text-light;
-    }
-
-    .sine-title {
-        @apply flex;
-        @apply items-center;
-
-        @apply space-x-5;
-    }
-
-    .sine-title__heading,
-    .sine-title__image {
-        @apply in-out-smooth;
-    }
-
-    .sine-title__date {
-        @apply text-xs;
-
-        @apply opacity-90;
-    }
-
-    .sine-title__heading {
-        @apply heading;
-
-        @apply text-lg;
-    }
-
-    .sine-title__image {
-        @apply size-8;
-
-        @apply rounded-full;
+        &:disabled {
+            @apply cursor-not-allowed;
+        }
     }
 
     /*========== 

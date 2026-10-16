@@ -1,4 +1,6 @@
-import { useNavigate } from '@tanstack/react-router';
+import { useState } from 'react';
+
+import { useNavigate, useLoaderDeps } from '@tanstack/react-router';
 
 import ThumbsDown from '@/components/SVGs/ThumbsDown';
 import ThumbsUp from '@/components/SVGs/ThumbsUp';
@@ -10,12 +12,19 @@ import type { SineSkeleton } from './Index';
 
 import { usePlayer } from './Video';
 
-export default function Component({ id, tag }: { id: SineSkeleton['id']; tag: SineSkeleton['tag'] }) {
+export default function Component({ id }: { id: SineSkeleton['id'] }) {
+    const [is_loading, set_is_loading] = useState<boolean>(false);
+
     const navigate = useNavigate();
+
+    const { tag } = useLoaderDeps({ from: '/' });
+
     const muted = usePlayer((s) => s.muted);
     const toggle_muted = usePlayer((s) => s.toggleMuted);
 
     const handle_click = async (value: -1 | 1) => {
+        set_is_loading(true);
+
         try {
             // TODO: Handle success
             await add_anon_reaction({
@@ -39,6 +48,8 @@ export default function Component({ id, tag }: { id: SineSkeleton['id']; tag: Si
             navigate({ to: '/', search: { id: next_video_id, tag }, replace: true });
         } catch (err) {
             if (import.meta.env.DEV) console.log(err);
+        } finally {
+            set_is_loading(false);
         }
     };
 
@@ -46,13 +57,13 @@ export default function Component({ id, tag }: { id: SineSkeleton['id']; tag: Si
         <div className="sine__vote">
             <div className="sine-vote">
                 <div className="sine-vote__thumbs">
-                    <button className="sine-thumbs" onClick={() => handle_click(-1)}>
+                    <button className="sine-thumbs" disabled={is_loading} onClick={() => handle_click(-1)}>
                         <ThumbsDown />
                     </button>
                 </div>
 
                 <div className="sine-vote__thumbs">
-                    <button className="sine-thumbs" onClick={() => handle_click(1)}>
+                    <button className="sine-thumbs" disabled={is_loading} onClick={() => handle_click(1)}>
                         <ThumbsUp />
                     </button>
                 </div>

@@ -10,17 +10,15 @@ import type { SineSkeleton } from './Index';
 const { Player } = createPlayer({ features: videoFeatures });
 
 export default function Component({
-    created_at,
+    creator,
     id,
-    tag,
+    tags,
     title,
-    user,
 }: {
-    created_at: SineSkeleton['created_at'];
+    creator: SineSkeleton['creator'];
     id: SineSkeleton['id'];
-    tag: SineSkeleton['tag'];
+    tags: SineSkeleton['tags'];
     title: SineSkeleton['title'];
-    user: SineSkeleton['user'];
 }) {
     return (
         <Player>
@@ -35,9 +33,9 @@ export default function Component({
                     src={`https://d3j2vjabzyd1kj.cloudfront.net/videos/${id}.mp4`}
                 />
 
-                <Details created_at={created_at} title={title} user={user} />
+                <Details creator={creator} tags={tags} title={title} />
 
-                <Vote id={id} tag={tag} />
+                <Vote id={id} />
 
                 <Controls />
             </Container>
