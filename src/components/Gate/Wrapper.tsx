@@ -64,7 +64,11 @@ export default function Component({ handle_hide }: { handle_hide: Function }) {
                         </div>
 
                         <div className="space-y-7">
-                            <Form handle_change={handle_change} handle_submit={handle_submit} is_loading={is_loading} />
+                            <Form
+                                disabled={is_loading || error !== null}
+                                handle_change={handle_change}
+                                handle_submit={handle_submit}
+                            />
 
                             <div className={error_class_name}>
                                 <div>{error}</div>

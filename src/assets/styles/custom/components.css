@@ -87,6 +87,9 @@
     }
 
     .horn {
+        @apply relative;
+        @apply z-10;
+
         animation: horn 5s cubic-bezier(0, 0, 0.5, 1) infinite alternate;
 
         @apply link--opacity;
@@ -94,11 +97,11 @@
 
     @keyframes horn {
         from {
-            transform: scale(1) rotate(-5deg);
+            transform: scale(1) rotate(-5deg) translateY(0);
         }
 
         to {
-            transform: scale(1.25) rotate(10deg);
+            transform: scale(1.25) rotate(10deg) translateY(25%);
         }
     }
 

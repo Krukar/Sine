@@ -37,12 +37,7 @@ export default function Component({
 
                 <label className="label" htmlFor="area_code">
                     What's your area code?
-                    <select
-                        className="input"
-                        name="area_code"
-                        value={area_code}
-                        onChange={(e) => handle_change('area_code', e.target.value)}
-                    >
+                    <select className="input" name="area_code" value={area_code} onChange={(e) => handle_change('area_code', e.target.value)}>
                         {['416', '647', '437', '942'].map((e) => (
                             <option key={e} value={e}>
                                 {e}
@@ -54,21 +49,16 @@ export default function Component({
 
                 <label className="label" htmlFor="neighbourhood">
                     Which of the 6ix do you represent?
-                    <select
-                        className="input"
-                        name="neighbourhood"
-                        value={neighbourhood}
-                        onChange={(e) => handle_change('neighbourhood', e.target.value)}
-                    >
+                    <select className="input" name="neighbourhood" value={neighbourhood} onChange={(e) => handle_change('neighbourhood', e.target.value)}>
                         {[
-                            { key: 'old_toronto', label: 'Old Toronto' },
+                            { key: 'old-toronto', label: 'Old Toronto' },
                             { key: 'etobicoke', label: 'Etobicoke' },
-                            { key: 'north_york', label: 'North York' },
+                            { key: 'north-york', label: 'North York' },
                             { key: 'scarborough', label: 'Scarborough' },
                             { key: 'york', label: 'York' },
-                            { key: 'east_york', label: 'East York' },
+                            { key: 'east-york', label: 'East York' },
                         ].map(({ key, label }) => (
-                            <option key={key} value={label}>
+                            <option key={key} value={key}>
                                 {label}
                             </option>
                         ))}
@@ -78,12 +68,7 @@ export default function Component({
 
                 <label className="label" htmlFor="drake_album">
                     Drake's best album?
-                    <select
-                        className="input"
-                        name="drake_album"
-                        value={drake_album}
-                        onChange={(e) => handle_change('drake_album', e.target.value)}
-                    >
+                    <select className="input" name="drake_album" value={drake_album} onChange={(e) => handle_change('drake_album', e.target.value)}>
                         {[
                             { key: 'thank_me_later', label: 'Thank Me Later' },
                             { key: 'take_care', label: 'Take Care' },

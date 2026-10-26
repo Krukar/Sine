@@ -10,7 +10,7 @@ export default function Component() {
             <Banner />
 
             <header className="bg-primary text-light shadow-lg">
-                <div className="flex justify-between items-center pt-6">
+                <div className="flex justify-between items-center pt-6 md:pb-3">
                     <div className="flex-1 flex">
                         <Horn />
                     </div>

@@ -1,23 +1,13 @@
+# Sine
+
+Toronto vines
+
 ## Env Vars
 
-# CLERK
-
 CLERK_SECRET_KEY=Clerk secret key
-
-# NEON
-
 DATABASE_URL=Neon database url
-
-# KRUKAR
-
 GATE_CODE=Secret code to get in
-
-# DEV
-
 DEV=Dev mode
-
-# PUBLIC
-
 VITE_CLERK_PUBLISHABLE_KEY=Vite Clerk key
 
 ## Versions

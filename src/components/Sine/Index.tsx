@@ -6,15 +6,15 @@ export type SineSkeleton = {
         img: string;
         name: string;
     };
+    date: string;
     id: string;
-    tags: string[];
     title: string;
 };
 
-export default function Component({ creator, id, tags, title }: SineSkeleton) {
+export default function Component({ date, creator, id, title }: SineSkeleton) {
     return (
         <div className="sine">
-            <Player creator={creator} id={id} tags={tags} title={title} />
+            <Player creator={creator} date={date} id={id} title={title} />
         </div>
     );
 }

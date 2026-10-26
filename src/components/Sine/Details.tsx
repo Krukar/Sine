@@ -1,28 +1,16 @@
 import type { SineSkeleton } from './Index';
 
-import Tags from './Tags';
-
-export default function Component({
-    creator,
-    tags,
-    title,
-}: {
-    tags: SineSkeleton['tags'];
-    creator: SineSkeleton['creator'];
-    title: SineSkeleton['title'];
-}) {
+export default function Component({ creator, date, title }: { creator: SineSkeleton['creator']; date: SineSkeleton['date']; title: SineSkeleton['title'] }) {
     return (
-        <div className="sine__details">
-            <div className="sine-details">
-                <div>
-                    <img className="sine-details__image" src={creator.img} />
-                </div>
+        <div className="sine-details">
+            <div>
+                <img className="sine-details__image" src={creator.img} />
+            </div>
 
-                <div>
-                    <div className="sine-details__heading">{title}</div>
+            <div>
+                <div className="sine-details__title">{title}</div>
 
-                    <Tags items={tags} />
-                </div>
+                <div className="sine-details__date">{date}</div>
             </div>
         </div>
     );

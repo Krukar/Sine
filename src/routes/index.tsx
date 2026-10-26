@@ -1,11 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { get_sine_by_id } from '@/lib/sine';
+import { get_neighbourhood_sines, get_sine_by_id } from '@/lib/sine';
 
 import * as z from 'zod';
 
 import Sine from '@/components/Sine/Index';
-// import Sines from '@/components/Sines';
+import Sines from '@/components/Sines';
 
 export const Route = createFileRoute('/')({
     component: Home,
@@ -14,7 +14,9 @@ export const Route = createFileRoute('/')({
         id: z.string().length(6).optional(),
         tag: z
             .string()
-            .regex(/^[a-z0-9_]{3,128}$/)
+            .min(3)
+            .max(128)
+            .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
             .optional(),
     }),
     loaderDeps: ({ search }) => ({ id: search.id, tag: search.tag }),
@@ -22,9 +24,9 @@ export const Route = createFileRoute('/')({
         try {
             const { id } = deps;
 
-            const sine = await get_sine_by_id({ data: { id: id || 'SwuFvx' } });
+            const [items, sine] = await Promise.all([get_neighbourhood_sines(), get_sine_by_id({ data: { id: id || 'SwuFvx' } })]);
 
-            return { sine };
+            return { items, sine };
         } catch (err) {
             if (import.meta.env.DEV) console.log(err);
 
@@ -34,7 +36,7 @@ export const Route = createFileRoute('/')({
 });
 
 function Home() {
-    const { sine } = Route.useLoaderData();
+    const { items, sine } = Route.useLoaderData();
 
     return (
         <div>
@@ -42,13 +44,9 @@ function Home() {
                 <Sine {...sine} />
             </section>
 
-            {/* <section>
-                <h1>Views from the 6ix</h1>
-
-                <div>
-                    <h2></h2>
-                </div>
-            </section> */}
+            <section>
+                <Sines items={items} />
+            </section>
         </div>
     );
 }

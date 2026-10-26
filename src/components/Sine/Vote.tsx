@@ -10,7 +10,7 @@ import { get_next_sine_id } from '@/lib/sine';
 
 import type { SineSkeleton } from './Index';
 
-import { usePlayer } from './Video';
+import { usePlayer } from './Player';
 
 export default function Component({ id }: { id: SineSkeleton['id'] }) {
     const [is_loading, set_is_loading] = useState<boolean>(false);
@@ -54,19 +54,17 @@ export default function Component({ id }: { id: SineSkeleton['id'] }) {
     };
 
     return (
-        <div className="sine__vote">
-            <div className="sine-vote">
-                <div className="sine-vote__thumbs">
-                    <button className="sine-thumbs" disabled={is_loading} onClick={() => handle_click(-1)}>
-                        <ThumbsDown />
-                    </button>
-                </div>
+        <div className="sine-vote">
+            <div className="sine-vote__thumbs">
+                <button className="sine-thumbs" disabled={is_loading} onClick={() => handle_click(-1)}>
+                    <ThumbsDown />
+                </button>
+            </div>
 
-                <div className="sine-vote__thumbs">
-                    <button className="sine-thumbs" disabled={is_loading} onClick={() => handle_click(1)}>
-                        <ThumbsUp />
-                    </button>
-                </div>
+            <div className="sine-vote__thumbs">
+                <button className="sine-thumbs" disabled={is_loading} onClick={() => handle_click(1)}>
+                    <ThumbsUp />
+                </button>
             </div>
         </div>
     );

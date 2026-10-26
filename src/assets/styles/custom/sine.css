@@ -1,28 +1,43 @@
 @layer components {
-    .sine {
-        @apply relative;
-    }
-
     .sine__container {
+        @apply relative;
+
         @apply bg-dark;
 
         @apply aspect-video;
     }
 
+    .sine__bottom,
+    .sine__top {
+        @apply absolute;
+        @apply left-0;
+        @apply right-0;
+
+        @apply p-5;
+        @apply sm:p-6;
+        @apply xl:p-7;
+    }
+
+    .sine__top {
+        @apply top-0;
+
+        @apply flex;
+        @apply items-center;
+        @apply justify-between;
+    }
+
+    .sine__bottom {
+        @apply bottom-0;
+    }
+
     /*========== 
         Controls
     ==========*/
-    .sine-controls {
-        @apply absolute;
-
-        @apply top-7;
-        @apply right-7;
-    }
 
     .sine-controls__group {
         @apply flex;
 
-        @apply space-x-7;
+        @apply space-x-6;
     }
 
     .sine-controls__control {
@@ -37,67 +52,50 @@
         @apply block;
         @apply box-content;
 
-        @apply size-7;
+        @apply size-6;
+        @apply md:size-7;
     }
 
     /*========== 
         Details
     ==========*/
-    .sine__details {
-        @apply absolute;
-
-        @apply top-7;
-        @apply left-7;
-
-        @apply text-light;
-    }
-
     .sine-details {
         @apply flex;
         @apply items-center;
 
         @apply space-x-5;
+
+        @apply text-light;
     }
 
-    .sine-details__heading,
-    .sine-details__image {
-        @apply in-out-smooth;
-    }
-
-    .sine-details__heading {
-        @apply heading;
-
-        @apply text-lg;
-
-        @apply mb-3;
-    }
-
-    .sine-details__image {
-        @apply size-8;
-
-        @apply rounded-full;
-    }
-
-    /*========== 
-        Tags
-    ==========*/
-    .sine-tags {
-        @apply flex;
-
-        @apply space-x-4;
+    .sine-details__date {
+        @apply hidden;
+        @apply md:block;
 
         @apply text-xs;
     }
 
-    .sine-tags__items {
-        @apply flex;
+    .sine-details__image {
+        @apply hidden;
+        @apply md:block;
+
+        @apply size-8;
+        @apply rounded-full;
+    }
+
+    .sine-details__title {
+        @apply text-xs;
+        @apply md:text-base;
+
+        @apply font-bold;
     }
 
     /*========== 
         Thumbs
     ==========*/
     .sine-thumbs {
-        @apply size-7.5;
+        @apply size-7;
+        @apply md:size-7.5;
 
         @apply fill-transparent;
         @apply stroke-light;
@@ -122,13 +120,6 @@
     /*========== 
         Vote
     ==========*/
-    .sine__vote {
-        @apply absolute;
-        @apply left-7;
-        @apply right-7;
-        @apply bottom-7;
-    }
-
     .sine-vote {
         @apply flex;
 
@@ -143,32 +134,5 @@
         @apply w-full;
 
         @apply object-contain;
-    }
-
-    /*========== 
-        Fullscreen
-    ==========*/
-    .sine__container:fullscreen {
-        .sine-controls__button {
-            @apply xl:size-8;
-        }
-
-        .sine-thumbs {
-            @apply xl:size-9;
-        }
-
-        .sine-title__heading {
-            @apply xl:text-2xl;
-        }
-
-        .sine-title__image {
-            @apply xl:size-lue;
-        }
-
-        .sine__vote {
-            @apply xl:left-7;
-            @apply xl:right-7;
-            @apply xl:bottom-7;
-        }
     }
 }

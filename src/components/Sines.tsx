@@ -1,76 +1,43 @@
 import { Link } from '@tanstack/react-router';
 
-import type { Sine } from '@/lib/sine';
+import type { SineSkeleton } from './Sine/Index';
 
-export default function Component({ items }: { items: Sine[] }) {
+export default function Component({ items }: { items: { key: string; sines: SineSkeleton[]; title: string }[] }) {
     return (
-        <ul className="">
-            {items.map(({ created_at, id, tags, title, user }) => {
-                return (
-                    <li key={id}>
-                        <div>
-                            <Link className="" to="/" search={{ id }}>
-                                {title}
-                            </Link>
-                        </div>
+        <div>
+            <h1>Views from the 6ix</h1>
 
-                        {/* <div>rank</div> */}
-                    </li>
-                );
-            })}
-        </ul>
-    );
-}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-9">
+                {items.map(({ key, sines, title }) => (
+                    <div key={key}>
+                        <h2 className="mb-6 sm:text-center">{title}</h2>
 
-{
-    /* <div className="flex">
-                            <div className="hidden xs:block">
-                                <img className="size-9 rounded-full shadow-lg" src={user.img} />
-                            </div>
-
-                            <div className="flex-1">
-                                <Link className="text-lg link--primary" to="/" search={{ id }}>
-                                    {title}
-                                </Link>
-                            </div>
-
-                            <div className="bg-red-500">votes</div>
-                        </div> */
-}
-{
-    /* <div className="flex items-center space-x-6">
-                            <div>
-                               
-                            </div>
-
-                            <div className="space-y-5">
-                                <div>
-                                    <div>
-                                        
-                                    </div>
-
-                                    <div className="text-xs">{date}</div>
-                                </div>
-
-                                {tags && (
-                                    <div className="flex space-x-4 text-xs">
-                                        <div>Tags:</div>
-
-                                        <div className="flex space-x-3">
-                                            {tags.map((tag, i) => (
-                                                <div key={tag}>
-                                                    <Link className="link--primary" to="/" search={{ tag }}>
-                                                        {tag}
-                                                    </Link>
-
-                                                    {i < tags.length - 1 && <span>,</span>}
-                                                </div>
-                                            ))}
+                        <ul className="space-y-5">
+                            {sines.map(({ creator, date, id, title }) => (
+                                <li key={id}>
+                                    <div className="flex items-center space-x-5">
+                                        <div>
+                                            <img className="size-8 md:size-lue rounded-full shadow-lg" alt={creator.name} src={creator.img} />
                                         </div>
-                                    </div>
-                                )}
-                            </div>
 
-                            <div className="bg-red-500 flex-1">vote</div>
-                        </div> */
+                                        <div className="flex flex-col flex-1">
+                                            <div>
+                                                <Link className="text-sm md:text-base font-bold link--primary" to="/" search={{ id, tag: key }}>
+                                                    {title}
+                                                </Link>
+                                            </div>
+
+                                            <div className="text-xs text-grey">{date}</div>
+                                        </div>
+
+                                        <div>vote</div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 }

@@ -7,6 +7,15 @@ datasource db {
   provider = "postgresql"
 }
 
+model Attempt {
+  id    String @id @default(uuid(7)) @db.Uuid
+  guess String @db.VarChar(32)
+
+  created_at DateTime @default(now())
+
+  @@map("attempt")
+}
+
 model Reaction {
   id       String @id @default(uuid(7)) @db.Uuid
   user_id  String @db.VarChar(12)

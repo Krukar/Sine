@@ -1,11 +1,11 @@
 export default function Form({
+    disabled,
     handle_change,
     handle_submit,
-    is_loading,
 }: {
+    disabled: boolean;
     handle_change: React.ChangeEventHandler<HTMLFormElement>;
     handle_submit: React.SubmitEventHandler<HTMLFormElement>;
-    is_loading: boolean;
 }) {
     return (
         <form className="form" onChange={handle_change} onSubmit={handle_submit}>
@@ -26,7 +26,7 @@ export default function Form({
                 </label>
             </fieldset>
 
-            <button className="button--primary" disabled={is_loading} type="submit">
+            <button className="button--primary" disabled={disabled} type="submit">
                 Unlock
             </button>
         </form>

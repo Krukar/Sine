@@ -39,14 +39,25 @@ const get_or_create_user = (clerk_id: string) =>
         select: { id: true },
     });
 
+export const get_neighbourhood = createServerFn({ method: 'GET' }).handler(async (): Promise<User['settings']['neighbourhood']> => {
+    const { userId: clerk_id } = await auth();
+
+    if (!clerk_id) return null;
+
+    const user = await prisma.user.findUnique({
+        where: { clerk_id },
+        select: { settings: { select: { neighbourhood: true } } },
+    });
+
+    return (user?.settings?.neighbourhood as User['settings']['neighbourhood']) ?? null;
+});
+
 export const get_profile = createServerFn({ method: 'GET' }).handler(async (): Promise<{ user: User }> => {
     const { userId } = await auth();
 
     if (!userId) throw new Error('Unauthorized');
 
     const { id } = await get_or_create_user(userId);
-
-    console.log('new id', nanoid(6));
 
     const user = await prisma.user.findUniqueOrThrow({
         where: { id },
@@ -60,16 +71,6 @@ export const get_profile = createServerFn({ method: 'GET' }).handler(async (): P
                     neighbourhood: true,
                 },
             },
-            // videos: {
-            //     where: { deleted_at: null },
-            //     orderBy: { created_at: 'desc' },
-            //     select: { id: true, title: true },
-            // },
-            // reactions: {
-            //     where: { video: { deleted_at: null } },
-            //     orderBy: { updated_at: 'desc' },
-            //     select: { value: true, video: { select: { id: true, title: true } } },
-            // },
         },
     });
 
@@ -123,9 +124,7 @@ export const update_settings = createServerFn({ method: 'POST' })
                 ])
                 .nullable(),
             name: z.string().trim().min(3).max(128),
-            neighbourhood: z
-                .enum(['East York', 'Etobicoke', 'North York', 'Old Toronto', 'Scarborough', 'York'])
-                .nullable(),
+            neighbourhood: z.enum(['east-york', 'etobicoke', 'north-york', 'old-toronto', 'scarborough', 'york']).nullable(),
         }),
     )
     .handler(async ({ data }): Promise<{ success: boolean }> => {

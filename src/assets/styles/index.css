@@ -19,6 +19,7 @@
     --color-error: #ae132a; /* Raptors Red */
     --color-neutral: #8a8d8f; /* Raptors Neutral */
     --color-primary: #753bbd; /* Raptors Purple */
+    --color-grey: #525252; /* Tailwind Neutral 600 */
     --ease-cool: cubic-bezier(0, 0, 0.5, 1);
     --font-heading: 'League Spartan Variable', sans-serif;
     --font-sans: 'Ubuntu', sans-serif;
