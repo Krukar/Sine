@@ -9,17 +9,10 @@ import Sines from '@/components/Sines';
 
 export const Route = createFileRoute('/')({
     component: Home,
-    notFoundComponent: () => <div>oops</div>,
     validateSearch: z.object({
         id: z.string().length(6).optional(),
-        tag: z
-            .string()
-            .min(3)
-            .max(128)
-            .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
-            .optional(),
     }),
-    loaderDeps: ({ search }) => ({ id: search.id, tag: search.tag }),
+    loaderDeps: ({ search }) => ({ id: search.id }),
     loader: async ({ deps }) => {
         try {
             const { id } = deps;

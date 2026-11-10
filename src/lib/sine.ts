@@ -32,50 +32,45 @@ const generate_user = (user: {
     name: user.settings?.name || env.VITE_DISPLAY_NAME,
 });
 
-export const get_next_sine_id = createServerFn({ method: 'POST' })
+export const get_random_sine = createServerFn({ method: 'GET' })
     .validator(
-        z.object({
-            current_id: z.string(),
-            tag: z
-                .string()
-                .min(3)
-                .max(128)
-                .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
-                .optional(),
-        }),
+        z
+            .object({
+                tag: z
+                    .string()
+                    .min(3)
+                    .max(128)
+                    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+                    .optional(),
+            })
+            .optional(),
     )
-    .handler(async ({ data }): Promise<string> => {
-        const { current_id, tag } = data;
+    .handler(async ({ data }): Promise<string | null> => {
+        if (data?.tag) {
+            const { tag } = data;
 
-        if (tag) {
-            const tagged = await prisma.$queryRaw<{ id: string }[]>`
+            const results = await prisma.$queryRaw<{ id: string }[]>`
                 SELECT v.id
                 FROM videos v
                 JOIN tags t ON t.video_id = v.id
                 WHERE t.name = ${tag}
                 AND v.deleted_at IS NULL
-                AND v.id <> ${current_id}
                 ORDER BY random()
                 LIMIT 1
             `;
 
-            if (tagged.length === 0) throw new Error(`Could not find sine with tag: ${tag}`);
-
-            return tagged[0].id;
+            return results[0]?.id ?? null;
         }
 
-        const any = await prisma.$queryRaw<{ id: string }[]>`
-            SELECT v.id
-            FROM videos v
-            WHERE v.deleted_at IS NULL
-            AND v.id <> ${current_id}
-            ORDER BY random()
-            LIMIT 1
-        `;
+        const results = await prisma.$queryRaw<{ id: string }[]>`
+                SELECT v.id
+                FROM videos v
+                WHERE v.deleted_at IS NULL
+                ORDER BY random()
+                LIMIT 1
+            `;
 
-        if (any.length === 0) throw new Error('Could not find next sine');
-
-        return any[0].id;
+        return results[0]?.id ?? null;
     });
 
 export const get_sine_by_id = createServerFn({ method: 'POST' })

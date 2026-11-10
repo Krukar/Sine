@@ -21,3 +21,10 @@ VITE_CLERK_PUBLISHABLE_KEY=Vite Clerk key
 
 - Changed videos from cover to contain and added bg-dark to the container
 - DB updates
+
+### v0.0.3
+
+- Added attempts log
+- Updated Sine
+- Added profile settings
+- DB updates

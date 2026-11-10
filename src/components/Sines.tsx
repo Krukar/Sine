@@ -22,7 +22,7 @@ export default function Component({ items }: { items: { key: string; sines: Sine
 
                                         <div className="flex flex-col flex-1">
                                             <div>
-                                                <Link className="text-sm md:text-base font-bold link--primary" to="/" search={{ id, tag: key }}>
+                                                <Link className="text-sm md:text-base font-bold link--primary" to="/tag/$tag" params={{ tag: key }} search={{ id }}>
                                                     {title}
                                                 </Link>
                                             </div>

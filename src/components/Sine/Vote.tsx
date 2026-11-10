@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-import { useNavigate, useLoaderDeps } from '@tanstack/react-router';
+import { useNavigate, useParams } from '@tanstack/react-router';
 
 import ThumbsDown from '@/components/SVGs/ThumbsDown';
 import ThumbsUp from '@/components/SVGs/ThumbsUp';
 
 import { add_anon_reaction } from '@/lib/reaction';
-import { get_next_sine_id } from '@/lib/sine';
+import { get_random_sine } from '@/lib/sine';
 
 import type { SineSkeleton } from './Index';
 
@@ -17,7 +17,7 @@ export default function Component({ id }: { id: SineSkeleton['id'] }) {
 
     const navigate = useNavigate();
 
-    const { tag } = useLoaderDeps({ from: '/' });
+    const { tag } = useParams({ strict: false });
 
     const muted = usePlayer((s) => s.muted);
     const toggle_muted = usePlayer((s) => s.toggleMuted);
@@ -34,18 +34,13 @@ export default function Component({ id }: { id: SineSkeleton['id'] }) {
                 },
             });
 
-            const next_video_id = await get_next_sine_id({
-                data: {
-                    current_id: id,
-                    tag,
-                },
-            });
-
-            if (muted) toggle_muted();
+            const next_video_id = await get_random_sine({ data: { tag } });
 
             if (!next_video_id) return;
 
-            navigate({ to: '/', search: { id: next_video_id, tag }, replace: true });
+            if (muted) toggle_muted();
+
+            navigate({ to: '.', search: { id: next_video_id }, replace: true });
         } catch (err) {
             if (import.meta.env.DEV) console.log(err);
         } finally {

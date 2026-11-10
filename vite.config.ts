@@ -8,13 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { nitro } from 'nitro/vite';
 
 const config = defineConfig({
-    plugins: [
-        devtools(),
-        nitro({ rollupConfig: { external: [/^@sentry\//] } }),
-        tailwindcss(),
-        tanstackStart(),
-        viteReact(),
-    ],
+    plugins: [devtools(), nitro({ rollupConfig: { external: [/^@sentry\//] } }), tailwindcss(), tanstackStart(), viteReact()],
     resolve: { tsconfigPaths: true },
 });
 

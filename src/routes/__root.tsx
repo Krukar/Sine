@@ -29,7 +29,7 @@ export const Route = createRootRoute({
             },
             {
                 name: 'description',
-                content: 'Vines from the Six',
+                content: '6ixBuzz without the racism',
             },
         ],
         links: [
