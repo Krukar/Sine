@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as ChannelIdRouteImport } from './routes/channel/$id'
 import { Route as PageAboutRouteImport } from './routes/page/about'
 import { Route as TagTagRouteImport } from './routes/tag/$tag'
 
@@ -22,6 +23,11 @@ const IndexRoute = IndexRouteImport.update({
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChannelIdRoute = ChannelIdRouteImport.update({
+  id: '/channel/$id',
+  path: '/channel/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PageAboutRoute = PageAboutRouteImport.update({
@@ -38,12 +44,14 @@ const TagTagRoute = TagTagRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/profile': typeof ProfileRoute
+  '/channel/$id': typeof ChannelIdRoute
   '/page/about': typeof PageAboutRoute
   '/tag/$tag': typeof TagTagRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/profile': typeof ProfileRoute
+  '/channel/$id': typeof ChannelIdRoute
   '/page/about': typeof PageAboutRoute
   '/tag/$tag': typeof TagTagRoute
 }
@@ -51,20 +59,23 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/profile': typeof ProfileRoute
+  '/channel/$id': typeof ChannelIdRoute
   '/page/about': typeof PageAboutRoute
   '/tag/$tag': typeof TagTagRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/profile' | '/page/about' | '/tag/$tag'
+  fullPaths: '/' | '/profile' | '/channel/$id' | '/page/about' | '/tag/$tag'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/profile' | '/page/about' | '/tag/$tag'
-  id: '__root__' | '/' | '/profile' | '/page/about' | '/tag/$tag'
+  to: '/' | '/profile' | '/channel/$id' | '/page/about' | '/tag/$tag'
+  id:
+    '__root__' | '/' | '/profile' | '/channel/$id' | '/page/about' | '/tag/$tag'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProfileRoute: typeof ProfileRoute
+  ChannelIdRoute: typeof ChannelIdRoute
   PageAboutRoute: typeof PageAboutRoute
   TagTagRoute: typeof TagTagRoute
 }
@@ -83,6 +94,13 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/channel/$id': {
+      id: '/channel/$id'
+      path: '/channel/$id'
+      fullPath: '/channel/$id'
+      preLoaderRoute: typeof ChannelIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/page/about': {
@@ -105,6 +123,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ProfileRoute: ProfileRoute,
+  ChannelIdRoute: ChannelIdRoute,
   PageAboutRoute: PageAboutRoute,
   TagTagRoute: TagTagRoute,
 }

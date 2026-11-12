@@ -7,7 +7,7 @@ import * as z from 'zod';
 import Sine from '@/components/Sine/Index';
 
 export const Route = createFileRoute('/tag/$tag')({
-    component: Tag,
+    component: Page,
     validateSearch: z.object({
         id: z.string().length(6).optional(),
     }),
@@ -43,7 +43,7 @@ export const Route = createFileRoute('/tag/$tag')({
     },
 });
 
-function Tag() {
+function Page() {
     const { sine } = Route.useLoaderData();
 
     return (

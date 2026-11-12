@@ -6,6 +6,17 @@
         @apply link--dark;
     }
 
+    .channel-button {
+        @apply text-light;
+
+        @apply size-6;
+        @apply lg:size-7;
+
+        @apply opacity-75;
+
+        @apply link--primary;
+    }
+
     .custom-scrollbar::-webkit-scrollbar {
         @apply h-4;
         @apply w-4;

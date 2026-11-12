@@ -8,7 +8,7 @@ import Sine from '@/components/Sine/Index';
 import Sines from '@/components/Sines';
 
 export const Route = createFileRoute('/')({
-    component: Home,
+    component: Page,
     validateSearch: z.object({
         id: z.string().length(6).optional(),
     }),
@@ -28,7 +28,7 @@ export const Route = createFileRoute('/')({
     },
 });
 
-function Home() {
+function Page() {
     const { items, sine } = Route.useLoaderData();
 
     return (
@@ -39,6 +39,14 @@ function Home() {
 
             <section>
                 <Sines items={items} />
+            </section>
+
+            {/* <section>Some kind of divider goes here tbd</section> */}
+
+            <section>
+                <h1>Channels</h1>
+
+                <div>channel image, title, description, social media links</div>
             </section>
         </div>
     );

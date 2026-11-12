@@ -30,7 +30,7 @@ export default function Component({ items }: { items: { key: string; sines: Sine
                                             <div className="text-xs text-grey">{date}</div>
                                         </div>
 
-                                        <div>vote</div>
+                                        {/* <div>vote</div> */}
                                     </div>
                                 </li>
                             ))}

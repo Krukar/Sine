@@ -22,7 +22,7 @@
         @apply top-0;
 
         @apply flex;
-        @apply items-center;
+        @apply items-start;
         @apply justify-between;
     }
 
@@ -33,7 +33,6 @@
     /*========== 
         Controls
     ==========*/
-
     .sine-controls__group {
         @apply flex;
 
