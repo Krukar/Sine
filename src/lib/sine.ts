@@ -9,8 +9,20 @@ import { env } from '@/env';
 
 import * as z from 'zod';
 
-import type { SineSkeleton } from '@/components/Sine/Index';
+export type SineSkeleton = {
+    creator: {
+        id: string;
+        img: string;
+        name: string;
+    };
+    date: string;
+    id: string;
+    title: string;
+};
 
+/* ====================
+    Private Functions
+==================== */
 const format_date = (created_at: Date): string => {
     const date = new Intl.DateTimeFormat('en-CA', {
         dateStyle: 'medium',
@@ -32,6 +44,9 @@ const generate_user = (user: {
     name: user.settings?.name || env.VITE_DISPLAY_NAME,
 });
 
+/* ====================
+    Public Functions
+==================== */
 export const get_random_sine = createServerFn({ method: 'GET' })
     .validator(
         z

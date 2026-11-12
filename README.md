@@ -28,3 +28,9 @@ VITE_CLERK_PUBLISHABLE_KEY=Vite Clerk key
 - Updated Sine
 - Added profile settings
 - DB updates
+
+### v0.0.4
+
+- Added /channel
+- Added channels to the homepage
+- Updated footer

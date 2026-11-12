@@ -1,15 +1,6 @@
 import Player from './Player';
 
-export type SineSkeleton = {
-    creator: {
-        id: string;
-        img: string;
-        name: string;
-    };
-    date: string;
-    id: string;
-    title: string;
-};
+import type { SineSkeleton } from '@/lib/sine';
 
 export default function Component({ date, creator, id, title }: SineSkeleton) {
     return (

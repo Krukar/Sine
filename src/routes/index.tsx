@@ -1,9 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+import { get_channels } from '@/lib/channel';
 import { get_neighbourhood_sines, get_sine_by_id } from '@/lib/sine';
 
 import * as z from 'zod';
 
+import Channels from '@/components/Channels';
 import Sine from '@/components/Sine/Index';
 import Sines from '@/components/Sines';
 
@@ -17,9 +19,9 @@ export const Route = createFileRoute('/')({
         try {
             const { id } = deps;
 
-            const [items, sine] = await Promise.all([get_neighbourhood_sines(), get_sine_by_id({ data: { id: id || 'SwuFvx' } })]);
+            const [channels, items, sine] = await Promise.all([get_channels(), get_neighbourhood_sines(), get_sine_by_id({ data: { id: id || 'SwuFvx' } })]);
 
-            return { items, sine };
+            return { channels, items, sine };
         } catch (err) {
             if (import.meta.env.DEV) console.log(err);
 
@@ -29,7 +31,7 @@ export const Route = createFileRoute('/')({
 });
 
 function Page() {
-    const { items, sine } = Route.useLoaderData();
+    const { channels, items, sine } = Route.useLoaderData();
 
     return (
         <div>
@@ -44,9 +46,7 @@ function Page() {
             {/* <section>Some kind of divider goes here tbd</section> */}
 
             <section>
-                <h1>Channels</h1>
-
-                <div>channel image, title, description, social media links</div>
+                <Channels items={channels} />
             </section>
         </div>
     );

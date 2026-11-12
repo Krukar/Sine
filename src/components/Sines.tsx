@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 
-import type { SineSkeleton } from './Sine/Index';
+import type { SineSkeleton } from '@/lib/sine';
 
 export default function Component({ items }: { items: { key: string; sines: SineSkeleton[]; title: string }[] }) {
     return (
